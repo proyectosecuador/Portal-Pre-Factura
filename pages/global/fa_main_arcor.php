@@ -358,11 +358,7 @@ if ($stmt_cliente) {
 </style>
 
 <div class="">
-    <div class="page-title">
-        <div class="title_left">
-            <h3><i class="fa fa-database"></i> Gestión de Registros FA - Arcor</h3>
-        </div>
-    </div>
+
 
     <div class="clearfix"></div>
 
@@ -389,13 +385,7 @@ if ($stmt_cliente) {
             </a>
         </div>
     </div>
-    
-    <div class="stats-grid-arcor">
-        <div class="stat-card-arcor"><div class="stat-icon-arcor"><i class="fa fa-file-text"></i></div><div class="stat-info-arcor"><h3>Total Registros</h3><div class="stat-number" id="totalRegistros">0</div></div></div>
-        <div class="stat-card-arcor"><div class="stat-icon-arcor"><i class="fa fa-check-circle"></i></div><div class="stat-info-arcor"><h3>Completados</h3><div class="stat-number" id="totalCompletados">0</div></div></div>
-        <div class="stat-card-arcor"><div class="stat-icon-arcor"><i class="fa fa-clock-o"></i></div><div class="stat-info-arcor"><h3>En Proceso</h3><div class="stat-number" id="totalProceso">0</div></div></div>
-        <div class="stat-card-arcor"><div class="stat-icon-arcor"><i class="fa fa-percent"></i></div><div class="stat-info-arcor"><h3>Promedio</h3><div class="stat-number" id="promedioCompletado">0%</div></div></div>
-    </div>
+
     
     <div class="filtro-estado">
         <label><i class="fa fa-filter"></i> Filtrar por Estado:</label>

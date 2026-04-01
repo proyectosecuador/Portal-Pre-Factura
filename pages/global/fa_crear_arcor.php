@@ -6,9 +6,9 @@ include_once('../../control_session.php');
 include_once('../menu.php');
 
 // Variables para el header
-$dato1 = 1;
-$dato2 = 0;
-$dato3 = 0;
+$dato1 = 13;
+$dato2 = 70;
+$dato3 = 1;
 
 // Incluir header
 include 'headerh.php';
