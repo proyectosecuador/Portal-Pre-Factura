@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Portal de Facturaci&oacute;n </title>
+
+  <!-- Bootstrap -->
+  <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- NProgress -->
+  <link href="../vendors/nprogress/nprogress.css" rel="stylesheet" />
+  <!-- iCheck -->
+  <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet" />
+  <!-- bootstrap-wysiwyg -->
+  <link href="../vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet" />
+  <!-- Select2 -->
+  <link href="../vendors/select2/dist/css/select2.min.css" rel="stylesheet" />
+  <!-- Switchery -->
+  <link href="../vendors/switchery/dist/switchery.min.css" rel="stylesheet" />
+  <!-- starrr -->
+  <link href="../vendors/starrr/dist/starrr.css" rel="stylesheet" />
+  <!-- bootstrap-daterangepicker -->
+  <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+  <!-- Dropzone.js -->
+  <link href="../vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
+  <!-- Custom Theme Style -->
+  <link href="../build/css/custom.min.css" rel="stylesheet" />
+</head>
+
+<body class="nav-md">
+  <div class="container body">
+    <div class="main_container">
+      <div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
+          <div class="navbar nav_title" style="border: 0">
+            <a href="form.html" class="site_title">
+              <img src="images/ransa.png" alt="RANSA Logo" style="height: 40px" />
+            </a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <!-- menu profile quick info -->
+          <div class="profile clearfix">
+            <!--<div class="profile_pic">
+                            <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>-->
+            <div class="profile_info">
+              <span>Bienvenido,</span>
+              <h2>User</h2>
+            </div>
+          </div>
+          <!-- /menu profile quick info -->
+
+          <br />
+
+          <!-- sidebar menu -->
+          <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+              <!--<h3>General</h3>-->
+              <ul class="nav side-menu">
+                <li>
+                  <a><i class="fa fa-table"></i> Facturaci&oacute;n
+                    <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="index.html">Consulta</a></li>
+                    <li><a href="registrofactura.html">Registro</a></li>
+                    <li><a href="autSRI.html">Autorizadas SRI</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="menu_section">
+              <!--<h3>Live On</h3>-->
+              <ul class="nav side-menu">
+                <li>
+                  <a><i class="fa fa-edit"></i> Cat&aacute;logos
+                    <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="areas.html">Areas</a></li>
+                    <li><a href="subareas.html">SubAreas</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                    <li><a href="cecos.html">Cecos</a></li>
+                    <li><a href="cuentascont.html">Cuentas Contables</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="menu_section">
+              <!--<h3>Live On</h3>-->
+              <ul class="nav side-menu">
+                <li><a><i class="fa fa-tasks"></i> Facturaci&oacute;n <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="mistareas.html">Mis Tareas</a></li>
+                    <li><a href="ingresadas.html">Ingresadas</a></li>
+                    <li><a href="verificadas.html">Verificadas</a></li>
+                    <li><a href="aprobadas.html">Aprobadas</a></li>
+                    <li><a href="autorizadas.html">Autorizadas</a></li>
+                    <li><a href="rechazadas.html">Rechazadas</a></li>
+                    <li><a href="contabilizadas.html">Contabilizadas</a></li>
+                    <li><a href="anuladas.html">Anuladas</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- /sidebar menu -->
+
+          <!-- /menu footer buttons -->
+          <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+              <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+              <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+          </div>
+          <!-- /menu footer buttons -->
+        </div>
+      </div>
+
+      <!-- top navigation -->
+      <div class="top_nav">
+				<div class="nav_menu">
+					<div class="nav toggle">
+						<a id="menu_toggle"><i class="fa fa-bars"></i></a>
+					</div>
+					<nav class="nav navbar-nav">
+						<ul class=" navbar-right">
+							<li class="nav-item dropdown open" style="padding-left: 15px;">
+								<a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true"
+									id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+									<img src="images/user.png" alt="">User
+								</a>
+								<div class="dropdown-menu dropdown-usermenu pull-right"
+									aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="javascript:;" data-toggle="modal"
+										data-target="#changePasswordModal"> Cambiar Contraseña</a>
+									<a class="dropdown-item" href="login.html"><i class="fa fa-sign-out pull-right"></i>
+										Salir</a>
+								</div>
+							</li>
+
+							<li role="presentation" class="nav-item dropdown open">
+								<a href="mistareas.html" class="dropdown-toggle info-number" id="navbarDropdown1">
+									<i class="fa fa-paper-plane-o"></i>
+									<span class="badge bg-green" id="task-count">0</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+      <!-- /top navigation -->
+
+      <!-- page content -->
+      <div class="right_col" role="main">
+        <div class="">
+          <div class="page-title">
+            <div class="title_left">
+              <h3>Ingreso de Facturas</h3>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <div class="x_panel">
+                <div class="x_content">
+                  <form id="invoice-form" data-parsley-validate class="form-horizontal form-label-left">
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6">
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                            for="prioridad">Prioridad:</label>
+                          <div class="col-md-9 col-sm-9">
+                            <select id="prioridad" class="form-control">
+                              <option value="alta">Alta</option>
+                              <option value="media">Media</option>
+                              <option value="baja">Baja</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                            for="fecha-factura">Fecha de Factura:</label>
+                          <div class="col-md-9 col-sm-9">
+                            <fieldset>
+                              <div class="control-group">
+                                <div class="controls">
+                                  <div class="col-md-13 xdisplay_inputx form-group row has-feedback">
+                                    <input type="text" class="form-control has-feedback-left" id="single_cal1"
+                                      placeholder="Fecha de Factura" aria-describedby="inputSuccess2Status" />
+                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                    <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </fieldset>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 col-sm-6">
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                            for="area">Área:</label>
+                          <div class="col-md-9 col-sm-9">
+                            <select id="area" class="form-control">
+                              <option value="area1">Área 1</option>
+                              <option value="area2">Área 2</option>
+                              <option value="area3">Área 3</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                            for="subarea">SubÁrea:</label>
+                          <div class="col-md-9 col-sm-9">
+                            <select id="subarea" class="form-control">
+                              <option value="subarea1">SubÁrea 1</option>
+                              <option value="subarea2">SubÁrea 2</option>
+                              <option value="subarea3">SubÁrea 3</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-sm-6">
+                        <div class="item form-group">
+                          <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                            for="requiere-gerencia">Requiere Gerencia</label>
+                          <div class="col-md-9 col-sm-9 text-center">
+                            <input type="checkbox" id="requiere-gerencia" class="form-control" style="width: 30px" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <br />
+                <div class="x_content">
+                  <div class="x_title">
+                    <h2>
+                      Facturas
+                      <!--<small>different form elements</small>-->
+                    </h2>
+                    <div class="clearfix"></div>
+                  </div>
+                  <br />
+                  <!-- Contenedor dinámico donde se agregarán las secciones -->
+                  <div id="dynamic-sections">
+                    <!-- Sección inicial oculta -->
+                    <div class="additional-section" style="display: none">
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="num-autorizacion">Num. Autorización:</label>
+                            <div class="col-md-9 col-sm-9">
+                              <input type="text" class="form-control" placeholder="" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="factura">Factura:</label>
+                            <div class="col-md-9 col-sm-9">
+                              <input type="text" class="form-control" placeholder="" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--otra fila-->
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="empresa">Empresa:</label>
+                            <div class="col-md-9 col-sm-9">
+                              <input type="text" class="form-control" placeholder="" id="empresa" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="orden-compra">Orden de Compra:</label>
+                            <div class="col-md-9 col-sm-9">
+                              <input type="text" class="form-control" placeholder="" id="orden-compra" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!---fin otra fila-->
+                      <!--Inicio de otra row-->
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="num-autorizacion"
+                              style="text-align: left">RUC:</label>
+                            <div class="col-md-9 col-sm-9">
+                              <input type="text" class="form-control" placeholder="" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="factura">Proveedor:</label>
+                            <div class="col-md-9 col-sm-9">
+                              <input type="text" class="form-control" placeholder="" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--fin de otra row-->
+                      <!--Inicio de otra row-->
+                      <br>
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="num-autorizacion">Total $:</label>
+                            <div class="col-md-9 col-sm-9">
+                              <input type="text" class="form-control" placeholder="" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="factura">CECO (Centro de Costo):</label>
+                            <div class="col-md-9 col-sm-9" id="ceco-container">
+                              <div class="d-flex align-items-center">
+                                <input type="text" class="form-control mr-2" placeholder="Centro de Costo" />
+                                <input type="text" class="form-control mr-2" placeholder="%" style="width: 80px" />
+                                <button type="button" class="btn btn-success btn-sm" id="add-ceco">
+                                  <i class="fa fa-plus"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--fin de otra row-->
+                      <!--Inicio de otra row-->
+                      <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="num-autorizacion">Concepto:</label>
+                            <div class="col-md-9 col-sm-12">
+                              <textarea id="concepto" class="form-control" placeholder="..." rows="3"></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                          <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                              for="fecha-factura">Fecha de Factura:</label>
+                            <div class="col-md-9 col-sm-9">
+                              <input type="text" class="form-control has-feedback-left" id="single_cal1"
+                                placeholder="Fecha de Factura" aria-describedby="inputSuccess2Status" />
+                              <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                              <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--fin de otra row-->
+                      <br />
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                          <div class="x_panel">
+                            <div class="x_title">
+                              <h2>
+                                <i class="fa fa-file"></i> Anexar Archivos
+                              </h2>
+                              <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                              <p>
+                                Arrastre uno o varios archivos al cuadro de
+                                abajo o haga clic para seleccionarlos.
+                              </p>
+                              <form id="file-upload" action="/upload" class="dropzone"></form>
+                              <!--CAMBIAR A ENDPOINT REAL-->
+                              <br />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Botón para agregar nuevas secciones -->
+                  <div class="row">
+                    <div class="col-md-12 col-sm-12 text-center">
+                      <button type="button" class="btn btn-primary btn-lg" id="add-section">
+                        <i class="fa fa-plus"></i> Agregar Factura
+                      </button>
+                    </div>
+                  </div>
+                  <br />
+                  <div class="x_title">
+                    <div class="clearfix"></div>
+                  </div>
+                  <br />
+                  <!-- Sección siempre visible -->
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                          for="factura">Proveedor:</label>
+                        <div class="col-md-9 col-sm-9">
+                          <input type="text" id="proveedor" class="form-control" placeholder="" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                      <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" style="text-align: left"
+                          for="comentarios">Comentarios:</label>
+                        <div class="col-md-9 col-sm-9">
+                          <textarea id="comentarios" class="form-control" placeholder="Escribe tus comentarios aquí..."
+                            rows="4"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item form-group">
+                    <div class="col-md-12 col-sm-12 text-center">
+                      <button type="submit" class="btn btn-success btn-lg">
+                        Guardar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /page content -->
+
+      <!-- footer content -->
+      <footer>
+        <div class="pull-right">
+          Copyright © 2025 PORTAL FACTURACIÓN RANSA. All rights reserved.
+        </div>
+        <div class="clearfix"></div>
+      </footer>
+      <!-- /footer content -->
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="../vendors/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- FastClick -->
+  <script src="../vendors/fastclick/lib/fastclick.js"></script>
+  <!-- NProgress -->
+  <script src="../vendors/nprogress/nprogress.js"></script>
+  <!-- bootstrap-progressbar -->
+  <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+  <!-- iCheck -->
+  <script src="../vendors/iCheck/icheck.min.js"></script>
+  <!-- bootstrap-daterangepicker -->
+  <script src="../vendors/moment/min/moment.min.js"></script>
+  <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <!-- bootstrap-wysiwyg -->
+  <script src="../vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+  <script src="../vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+  <script src="../vendors/google-code-prettify/src/prettify.js"></script>
+  <!-- jQuery Tags Input -->
+  <script src="../vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+  <!-- Switchery -->
+  <script src="../vendors/switchery/dist/switchery.min.js"></script>
+  <!-- Select2 -->
+  <script src="../vendors/select2/dist/js/select2.full.min.js"></script>
+  <!-- Parsley -->
+  <script src="../vendors/parsleyjs/dist/parsley.min.js"></script>
+  <!-- Autosize -->
+  <script src="../vendors/autosize/dist/autosize.min.js"></script>
+  <!-- jQuery autocomplete -->
+  <script src="../vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+  <!-- starrr -->
+  <script src="../vendors/starrr/dist/starrr.js"></script>
+  <!-- Custom Theme Scripts -->
+  <script src="../build/js/custom.min.js"></script>
+  <!-- Dropzone.js -->
+  <script src="../vendors/dropzone/dist/min/dropzone.min.js"></script>
+  <!-- Datatables -->
+  <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+  <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+  <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+  <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+  <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+  <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+  <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+  <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+  <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+  <script src="../vendors/jszip/dist/jszip.min.js"></script>
+  <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+  <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const addSectionButton = document.getElementById("add-section");
+      const dynamicSectionsContainer =
+        document.getElementById("dynamic-sections");
+
+      // Función para inicializar Dropzone
+      function initializeDropzone(section) {
+        const dropzoneElement = section.querySelector(".dropzone");
+        if (dropzoneElement && !dropzoneElement.dropzone) {
+          new Dropzone(dropzoneElement, {
+            url: "/upload", // Reemplaza con tu endpoint real
+            maxFiles: 5,
+            acceptedFiles: "image/*,application/pdf",
+            dictDefaultMessage:
+              "Arrastra archivos aquí o haz clic para subir",
+            dictInvalidFileType: "Tipo de archivo no permitido",
+            dictFileTooBig: "El archivo es demasiado grande.",
+            addRemoveLinks: true,
+          });
+        }
+      }
+      // Función para inicializar el campo de fecha
+      function initializeDatePicker(section) {
+        const dateInputs = section.querySelectorAll(".has-feedback-left");
+        dateInputs.forEach((input) => {
+          $(input).daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+              format: "DD-MM-YYYY",
+            },
+          });
+        });
+      }
+      // Evento para agregar nuevas secciones
+      if (addSectionButton) {
+        addSectionButton.addEventListener("click", function () {
+          // Clonar la sección inicial
+          const newSection = document
+            .querySelector(".additional-section")
+            .cloneNode(true);
+
+          // Asegurarse de que la nueva sección sea visible
+          newSection.style.display = "block";
+          // Inicializar los campos de fecha en la nueva sección
+          initializeDatePicker(newSection);
+          // Inicializar Dropzone en la nueva sección
+          initializeDropzone(newSection);
+          // Agregar la nueva sección al contenedor dinámico
+          dynamicSectionsContainer.appendChild(newSection);
+        });
+      }
+
+      // Delegación de eventos para manejar los botones "add-ceco" y "remove-ceco"
+      dynamicSectionsContainer.addEventListener("click", function (event) {
+        if (event.target.closest("#add-ceco")) {
+          const addCecoButton = event.target.closest("#add-ceco");
+          const cecoContainer = addCecoButton
+            .closest(".item.form-group")
+            .querySelector("#ceco-container");
+
+          if (cecoContainer) {
+            // Crear un nuevo conjunto de campos
+            const newFields = document.createElement("div");
+            newFields.className = "d-flex align-items-center mt-2";
+
+            // Campo de texto para "Centro de Costo"
+            const cecoInput = document.createElement("input");
+            cecoInput.type = "text";
+            cecoInput.className = "form-control mr-2";
+            cecoInput.placeholder = "Centro de Costo";
+
+            // Campo de texto para "%"
+            const percentInput = document.createElement("input");
+            percentInput.type = "text";
+            percentInput.className = "form-control mr-2";
+            percentInput.placeholder = "%";
+            percentInput.style.width = "80px";
+
+            // Botón para eliminar el conjunto de campos
+            const removeButton = document.createElement("button");
+            removeButton.type = "button";
+            removeButton.className = "btn btn-danger btn-sm";
+            removeButton.innerHTML = '<i class="fa fa-minus"></i>';
+
+            // Evento para eliminar el conjunto de campos
+            removeButton.addEventListener("click", function () {
+              cecoContainer.removeChild(newFields);
+            });
+
+            // Agregar los elementos al nuevo conjunto
+            newFields.appendChild(cecoInput);
+            newFields.appendChild(percentInput);
+            newFields.appendChild(removeButton);
+
+            // Agregar el nuevo conjunto al contenedor
+            cecoContainer.appendChild(newFields);
+          }
+        }
+      });
+
+      // Evento para mostrar/ocultar la sección inicial
+      const toggleSectionButton = document.getElementById("toggle-section");
+      if (toggleSectionButton) {
+        toggleSectionButton.addEventListener("click", function () {
+          const section = document.getElementById("additional-section");
+          if (
+            section.style.display === "none" ||
+            section.style.display === ""
+          ) {
+            section.style.display = "block";
+
+            // Inicializar Dropzone solo si aún no está inicializado
+            initializeDropzone(section);
+
+            // Inicializar los campos de fecha en la sección visible
+            initializeDatePicker(section);
+          } else {
+            section.style.display = "none";
+          }
+        });
+      }
+
+      // Evento para alternar el logo en el menú
+      const menuToggleButton = document.getElementById("menu_toggle");
+      if (menuToggleButton) {
+        menuToggleButton.addEventListener("click", function () {
+          const logo = document.querySelector(".site_title img");
+          if (logo.classList.contains("small-logo")) {
+            logo.classList.remove("small-logo");
+          } else {
+            logo.classList.add("small-logo");
+          }
+        });
+      }
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      // Recupera el número de tareas desde localStorage
+      const taskCount = localStorage.getItem('taskCount') || 0; // Si no hay valor, usa 0 por defecto
+      document.getElementById('task-count').textContent = taskCount;
+    });
+  </script>
+  <!-- Modal para cambiar contraseña -->
+  <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog"
+    aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="changePasswordModalLabel">
+            <i class="fa fa-lock"></i> Actualizar Contraseña
+          </h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="change-password-form">
+            <div class="form-group">
+              <label for="new-password">Nueva Contraseña:</label>
+              <input type="password" class="form-control" id="new-password" placeholder="Ingrese nueva contraseña"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="repeat-password">Repita Contraseña:</label>
+              <input type="password" class="form-control" id="repeat-password" placeholder="Repita la nueva contraseña"
+                required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" id="update-password-btn">Actualizar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('update-password-btn').addEventListener('click', function () {
+      const newPassword = document.getElementById('new-password').value;
+      const repeatPassword = document.getElementById('repeat-password').value;
+
+      if (newPassword === repeatPassword) {
+        alert('Contraseña actualizada correctamente.');
+        $('#changePasswordModal').modal('hide');
+      } else {
+        alert('Las contraseñas no coinciden. Por favor, inténtelo de nuevo.');
+      }
+    });
+  </script>
+</body>
+
+</html>

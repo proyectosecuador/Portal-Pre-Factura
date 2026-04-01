@@ -1,0 +1,2726 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<table  border="1">
+  <tr>
+    <th>#</th>
+  <th>Fecha</th>
+ <th>Área</th>
+  <th>Subarea</th>
+  <th>Factura</th>
+  <th>Proveedor</th>
+  <th>Total</th>
+  <th>Estado</th>
+  <th>Autorizador</th>
+  </tr>
+
+<tr>
+       <td>254</td>
+       <td>2025-03-19</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-020-000000001</td>
+        <td>TAPIA FLORES JIMMY GUSTAVO</td>
+        <td>360</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>253</td>
+       <td>2025-03-19</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>003-003-000017995</td>
+        <td>DIAZCE S.A.</td>
+        <td>42.08</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>252</td>
+       <td>2025-03-17</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-064-033926197</td>
+        <td>CONSORCIO ECUATORIANO DE</td>
+        <td>37.94</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>251</td>
+       <td>2025-03-17</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-064-033926223</td>
+        <td>CONSORCIO ECUATORIANO DE</td>
+        <td>37.94</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>250</td>
+       <td>2025-03-18</td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-002-000008436</td>
+        <td>ZAC CIA LTDA</td>
+        <td>184.34</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>249</td>
+       <td>2025-03-19</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-066-000046894</td>
+        <td>CORPORACION  EL ROSADO S A</td>
+        <td>2.17</td>
+        <td>Verificada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>248</td>
+       <td>2025-03-19</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-002-000016212</td>
+        <td>SERVICIO DE ATENCION Y TRASLADOS ME</td>
+        <td>197.6</td>
+        <td>Verificada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>247</td>
+       <td>2025-03-19</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-002-000016213</td>
+        <td>SERVICIO DE ATENCION Y TRASLADOS ME</td>
+        <td>81</td>
+        <td>Verificada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>246</td>
+       <td>2025-03-17</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-001-000000258</td>
+        <td>PANTA CASTRO MIGDALIA ARACELI</td>
+        <td>951</td>
+        <td>Ingresada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>245</td>
+       <td>2025-03-18</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-003-000000600</td>
+        <td>FRANCO ROMERO JESSICA MARIBEL</td>
+        <td>595</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>243</td>
+       <td>2025-03-18</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000004691</td>
+        <td>QUALA  ECUADOR S.A.</td>
+        <td>170.71</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>242</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000425630</td>
+        <td>CARRO SEGURO CARSEG SA</td>
+        <td>357</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>241</td>
+       <td>2025-03-18</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-100-000000361</td>
+        <td>GONZALEZ GONZALEZ CARLOS FERNANDO</td>
+        <td>1092</td>
+        <td>Verificada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>240</td>
+       <td>2025-03-17</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-002-000007157</td>
+        <td>DUOPRINTDESIGN S.A.</td>
+        <td>55.5</td>
+        <td>Ingresada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>239</td>
+       <td>2025-03-17</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-002-000008221</td>
+        <td>CLOUD360 TECNOLOGIA Y SOLUCIONES</td>
+        <td>380.94</td>
+        <td>Ingresada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>238</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000026138</td>
+        <td>SALAN CANDO BETSY JACQUELIN</td>
+        <td>17.48</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>237</td>
+       <td>2025-03-19</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000330</td>
+        <td>FLORES CALERO JUAN DANIEL</td>
+        <td>310.5</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>236</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>66439</td>
+        <td>RANSA COMERCIAL S.A.C</td>
+        <td>6826.13</td>
+        <td>Aprobada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>235</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>00066437</td>
+        <td>RANSA COMERCIAL S.A.C</td>
+        <td>937.87</td>
+        <td>Aprobada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>234</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>66436</td>
+        <td>RANSA COMERCIAL S.A.C</td>
+        <td>15880.25</td>
+        <td>Ingresada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>233</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>00066435</td>
+        <td>RANSA COMERCIAL S.A.C</td>
+        <td>3008.64</td>
+        <td>Verificada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>232</td>
+       <td>2025-03-18</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-100-000001477</td>
+        <td>NEXO EGIDIO LAFFERTE ALANIZ</td>
+        <td>77.6</td>
+        <td>Ingresada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>231</td>
+       <td>2025-03-18</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-002-000006366</td>
+        <td>SIPECOM S.A</td>
+        <td>366.67</td>
+        <td>Ingresada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>230</td>
+       <td>2025-03-18</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>002-001-000353428</td>
+        <td>SWEADEN COMPANIA DE SEGUROS S.A.</td>
+        <td>10.21</td>
+        <td>Verificada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>229</td>
+       <td>2025-03-18</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>002-001-000353413</td>
+        <td>SWEADEN COMPANIA DE SEGUROS S.A.</td>
+        <td>284.75</td>
+        <td>Verificada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>228</td>
+       <td>2025-03-18</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>002-001-000353425</td>
+        <td>SWEADEN COMPANIA DE SEGUROS S.A.</td>
+        <td>284.75</td>
+        <td>Verificada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>227</td>
+       <td>2025-03-17</td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-003-000012964</td>
+        <td>MERGAMA S.A</td>
+        <td>82.26</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>225</td>
+       <td>2025-03-18</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000000425</td>
+        <td>COMPAÑIA DE TRANSPORTE PESADO</td>
+        <td>420</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>224</td>
+       <td>2025-03-14</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-100-000000122</td>
+        <td>STERLING SALAZAR HECTOR DAVID</td>
+        <td>2000</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>223</td>
+       <td>2025-03-17</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-100-000000138</td>
+        <td>ORDOÑEZ JARAMILLO SAHIRON BLADIMIR</td>
+        <td>350</td>
+        <td>Ingresada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>222</td>
+       <td>2025-03-15</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-100-000024950</td>
+        <td>RAMIREZ SOLORZANO LETTY MARLENE</td>
+        <td>436.44</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>221</td>
+       <td>2025-03-17</td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-001-000029064</td>
+        <td>TRANSPORTADORA ECUATORIANA DE VALOR</td>
+        <td>2622.67</td>
+        <td>Anulada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>220</td>
+       <td>2025-03-17</td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-001-000029064</td>
+        <td>TRANSPORTADORA ECUATORIANA DE VALOR</td>
+        <td>2622.67</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>219</td>
+       <td>2025-03-16</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000000033</td>
+        <td>MUYOLEMA CARRAZCO JUAN MIGUEL</td>
+        <td>99.99</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>218</td>
+       <td>2025-03-16</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000032</td>
+        <td>MUYOLEMA CARRAZCO JUAN MIGUEL</td>
+        <td>25</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>217</td>
+       <td>2025-03-16</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000031</td>
+        <td>MUYOLEMA CARRAZCO JUAN MIGUEL</td>
+        <td>265</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>216</td>
+       <td>2025-03-16</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000030</td>
+        <td>MUYOLEMA CARRAZCO JUAN MIGUEL</td>
+        <td>20</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>215</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000145532</td>
+        <td>SISMODE CIA. LTDA.</td>
+        <td>107.44</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>214</td>
+       <td>2025-03-14</td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-003-000012740</td>
+        <td>MERGAMA S.A</td>
+        <td>30.48</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>213</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td>Calidad</td>
+        <td>001-002-000027870</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>650</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>212</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td>Calidad</td>
+        <td>001-002-000027873</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>450</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>211</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-002-000027872</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>160</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>210</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-002-000027874</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>161</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>209</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-002-000027875</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>69</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>208</td>
+       <td>2025-03-17</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-002-000027871</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>160</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>207</td>
+       <td>2025-03-13</td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-002-000008378</td>
+        <td>ZAC CIA LTDA</td>
+        <td>131.08</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>206</td>
+       <td>2025-03-13</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000094055</td>
+        <td>ASESORIA SEGURIDAD Y VIGILANCIA</td>
+        <td>40</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>205</td>
+       <td>2025-03-13</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000094056</td>
+        <td>ASESORIA SEGURIDAD Y VIGILANCIA</td>
+        <td>40</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>204</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>002-003-000024435</td>
+        <td>HOMECENTERS ECUATORIANOS S.A.S.</td>
+        <td>540</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>203</td>
+       <td>2025-03-17</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000580959</td>
+        <td>LAARCOURIER EXPRESS SA</td>
+        <td>46.66</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>202</td>
+       <td>2025-03-13</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000580960</td>
+        <td>LAARCOURIER EXPRESS SA</td>
+        <td>71.13</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>201</td>
+       <td>2025-03-12</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-003-000000593</td>
+        <td>FRANCO ROMERO JESSICA MARIBEL</td>
+        <td>1105</td>
+        <td>Anulada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>200</td>
+       <td>2025-03-14</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>003-002-000076673</td>
+        <td>DIAZCE S.A.</td>
+        <td>21.04</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>199</td>
+       <td>2025-03-13</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000023457</td>
+        <td>ROBGUE EASY CAR S.A.</td>
+        <td>44.68</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>198</td>
+       <td>2025-03-13</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-001-000023458</td>
+        <td>ROBGUE EASY CAR S.A.</td>
+        <td>8.1</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>197</td>
+       <td>2025-03-13</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000001274</td>
+        <td>CISNEROS MARTINEZ JUAN CARLOS</td>
+        <td>800</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>196</td>
+       <td>2025-03-14</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-002-000026053</td>
+        <td>SALAN CANDO BETSY JACQUELIN</td>
+        <td>16.5</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>195</td>
+       <td>2025-03-13</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000021579</td>
+        <td>RUBA S.A.</td>
+        <td>4763.29</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>194</td>
+       <td>2025-03-13</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000021580</td>
+        <td>RUBA S.A.</td>
+        <td>537.63</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>193</td>
+       <td>2025-03-14</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-051-000007670</td>
+        <td>ANTONIO PINO YCAZA CIA LTDA</td>
+        <td>1552</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>192</td>
+       <td>2025-03-14</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-051-000007671</td>
+        <td>ANTONIO PINO YCAZA CIA LTDA</td>
+        <td>1911</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>191</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>033-999-002718242</td>
+        <td>CNEL EP</td>
+        <td>401.38</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>190</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>033-999-002718193</td>
+        <td>CNEL EP</td>
+        <td>111.82</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>189</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>00066439</td>
+        <td>RANSA COMERCIAL S.A.C</td>
+        <td>6826.13</td>
+        <td>Aprobada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>188</td>
+       <td>2025-03-14</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000000262</td>
+        <td>ODEMA S.A.S.</td>
+        <td>75816.2</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>187</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000000259</td>
+        <td>ODEMA S.A.S.</td>
+        <td>107728.63</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>186</td>
+       <td>2025-03-14</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>004-002-000011917</td>
+        <td>TRANSPORTE PESADO NACIONAL</td>
+        <td>1280</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>185</td>
+       <td>2025-03-14</td>
+       <td>Operaciones</td>
+        <td>Transpenac Sólidos GYE</td>
+        <td>001-001-000159323</td>
+        <td>SATRACK S.A.</td>
+        <td>202.6</td>
+        <td>Ingresada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>184</td>
+       <td>2025-03-14</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>003-002-000076649</td>
+        <td>DIAZCE S.A.</td>
+        <td>105.2</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>183</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>003-003-000017626</td>
+        <td>DIAZCE S.A.</td>
+        <td>84.16</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>182</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000302</td>
+        <td>TRANSLOGINT TRANSPORTE DE CARGAS SO</td>
+        <td>1920</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>181</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000173</td>
+        <td>DELGADO LINO STEVEN ARTURO</td>
+        <td>1956</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>180</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-003-000006228</td>
+        <td>TRANSPORTE PESADO Y COMERCIO</td>
+        <td>350</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>179</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-106-000000853</td>
+        <td>COMPAÑIA DE TRANSPORTE PESADOS</td>
+        <td>1380</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>178</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-005-000003015</td>
+        <td>TRANSPORTE DE CARGA PESADA</td>
+        <td>1610</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>177</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-003-000001736</td>
+        <td>COMPAÑIA DE TRANSPORTE DE CARGA PES</td>
+        <td>2083</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>176</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000463</td>
+        <td>TRANSPJIMBAL S.A.</td>
+        <td>2575</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>175</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000002813</td>
+        <td>TRANSPORTE UNICORNIO S.A. TRANSUNIC</td>
+        <td>2806.3</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>174</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000068</td>
+        <td>ECUADORIAN LOGISTIC TRANSPORTE Y COMERCIO ECUALOGIST S.A.</td>
+        <td>2887.17</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>173</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000018</td>
+        <td>LOGISTRANSLEON S.A.</td>
+        <td>3505.4</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>172</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000002600</td>
+        <td>TRANSPORTE LOGISTICO PESADO</td>
+        <td>3670</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>171</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000002092</td>
+        <td>MORECAR  S.A</td>
+        <td>3985</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>170</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000000652</td>
+        <td>COOPERATIVA DE TRANSPORTE PESADO</td>
+        <td>4090</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>169</td>
+       <td>2025-03-14</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000008275</td>
+        <td>SEAR CIA. LTDA</td>
+        <td>3930</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>168</td>
+       <td>2025-03-13</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000025500</td>
+        <td>HERRERA LOZANO KETTY EGDA AMINTA</td>
+        <td>5</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>167</td>
+       <td>2025-03-13</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000614</td>
+        <td>LOPEZ PESANTES ELIAS MAURICIO</td>
+        <td>85</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>166</td>
+       <td>2025-03-13</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000613</td>
+        <td>LOPEZ PESANTES ELIAS MAURICIO</td>
+        <td>480</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>165</td>
+       <td>2025-03-13</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000615</td>
+        <td>LOPEZ PESANTES ELIAS MAURICIO</td>
+        <td>300</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>164</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td>Transpenac Sólidos GYE</td>
+        <td>001-001-000000013</td>
+        <td>MARQUEZ VEGA CARMEN MARGARITA</td>
+        <td>2805</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>163</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td>Transpenac Sólidos GYE</td>
+        <td>001-001-000000012</td>
+        <td>MARQUEZ VEGA CARMEN MARGARITA</td>
+        <td>2816.5</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>162</td>
+       <td>2025-03-12</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-002-000000075</td>
+        <td>GUAMAN CHALCO JORGE GONZALO</td>
+        <td>90</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>160</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-101-000066624</td>
+        <td>ECODIESEL CIA. LTDA.</td>
+        <td>308</td>
+        <td>Rechazada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>159</td>
+       <td>2025-03-05</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>225-800-100002245</td>
+        <td>ATIMASA SA</td>
+        <td>5225.45</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>158</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000000105</td>
+        <td>BAQUE YOSA MAGDALENA ALEXANDRA</td>
+        <td>170</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>157</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>021-901-000001953</td>
+        <td>SEGURILLANTA SA</td>
+        <td>23</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>155</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>002-003-000024520</td>
+        <td>HOMECENTERS ECUATORIANOS S.A.S.</td>
+        <td>540</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>154</td>
+       <td>2025-03-18</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000005065</td>
+        <td>COMPAÑIA DE SEGURIDAD ALERTA</td>
+        <td>23820</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>152</td>
+       <td>2025-03-12</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-002-000042312</td>
+        <td>DATAPRO SA</td>
+        <td>322</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>151</td>
+       <td>2025-03-12</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-002-000042310</td>
+        <td>DATAPRO SA</td>
+        <td>883</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>148</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000545</td>
+        <td>BUSINESSPOINT S.A.</td>
+        <td>950.8</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>147</td>
+       <td>2025-03-10</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-001-000001722</td>
+        <td>MEDIAR SEGURIDAD Y SALUD OCUPACIONA</td>
+        <td>19.9</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>146</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000543</td>
+        <td>BUSINESSPOINT S.A.</td>
+        <td>550.5</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>145</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000542</td>
+        <td>BUSINESSPOINT S.A.</td>
+        <td>1664.8</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>144</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>004-100-000000063</td>
+        <td>CHAVEZ PALMA PAUL ALEJANDRO</td>
+        <td>2665.89</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>143</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000005589</td>
+        <td>DPRISSAL C.A.</td>
+        <td>5291.71</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>142</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000005590</td>
+        <td>DPRISSAL C.A.</td>
+        <td>1399.72</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>141</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000069</td>
+        <td>TORRES MUÑOZ RICARDO BAYARDO</td>
+        <td>766.88</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>140</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000139</td>
+        <td>PADILLA SANCHEZ EDWIN ANDRES</td>
+        <td>1114.07</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>139</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000001889</td>
+        <td>ESTIBAS JQ ESTIBAS S.A.</td>
+        <td>1185.32</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>138</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000004617</td>
+        <td>COMPAÑIA ESTIBADORA DEL GUAYAS</td>
+        <td>926.29</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>137</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000000062</td>
+        <td>CHOEZ PENAFIEL JOSE IVAN</td>
+        <td>1107.74</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>136</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000009618</td>
+        <td>COARA S.A.S.</td>
+        <td>9289.32</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>135</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000138</td>
+        <td>PADILLA SANCHEZ EDWIN ANDRES</td>
+        <td>791.2</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>134</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000771</td>
+        <td>TRANSPORTE DE CARGA PESADA</td>
+        <td>465</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>133</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000770</td>
+        <td>TRANSPORTE DE CARGA PESADA</td>
+        <td>460</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>132</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000769</td>
+        <td>TRANSPORTE DE CARGA PESADA</td>
+        <td>32820</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>131</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000001193</td>
+        <td>BIANGRUPSA S.A.</td>
+        <td>1085</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>130</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-101-000002711</td>
+        <td>CDTRAP S.A.</td>
+        <td>1660</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>129</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-101-000002712</td>
+        <td>CDTRAP S.A.</td>
+        <td>1820</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>128</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-001-000160685</td>
+        <td>CIERPRONTI S A</td>
+        <td>139.2</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>127</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>002-002-000005407</td>
+        <td>MEZA ESPINOZA PROSPERO EUGENIO</td>
+        <td>83.08</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>126</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>010-050-000004999</td>
+        <td>ANTONIO PINO YCAZA CIA LTDA</td>
+        <td>1911</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>125</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000262</td>
+        <td>VASCO VISCAINO SILVANA DEL ROCIO</td>
+        <td>50.9</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>124</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000001252</td>
+        <td>CISNEROS MARTINEZ JUAN CARLOS</td>
+        <td>800</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>123</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000009706</td>
+        <td>ASFALTOS DISEÑOS Y SERVICIOS A.D.S.</td>
+        <td>499.2</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>122</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-901-000016858</td>
+        <td>TRADEVISEC S.A.</td>
+        <td>35</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>121</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-901-000016859</td>
+        <td>TRADEVISEC S.A.</td>
+        <td>112.5</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>120</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td>In-House Montecristi</td>
+        <td>002-002-000005406</td>
+        <td>MEZA ESPINOZA PROSPERO EUGENIO</td>
+        <td>1317.29</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>119</td>
+       <td>2025-03-10</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-100-000000357</td>
+        <td>GONZALEZ GONZALEZ CARLOS FERNANDO</td>
+        <td>133.4</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>118</td>
+       <td>2025-03-10</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-100-000000356</td>
+        <td>GONZALEZ GONZALEZ CARLOS FERNANDO</td>
+        <td>31.5</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>117</td>
+       <td>2025-03-08</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>029-008-000213882</td>
+        <td>CORPORACION  EL ROSADO S A</td>
+        <td>32.52</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>116</td>
+       <td>2025-03-08</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>029-008-000213885</td>
+        <td>CORPORACION  EL ROSADO S A</td>
+        <td>25.38</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>115</td>
+       <td>2025-03-10</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-004-000000567</td>
+        <td>YANZA ENCALADA ELENA DEL CARMEN</td>
+        <td>325</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>114</td>
+       <td>2025-03-12</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-004-000000566</td>
+        <td>YANZA ENCALADA ELENA DEL CARMEN</td>
+        <td>141</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>113</td>
+       <td>2025-03-10</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-004-000000565</td>
+        <td>YANZA ENCALADA ELENA DEL CARMEN</td>
+        <td>325</td>
+        <td>Ingresada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>112</td>
+       <td>2025-03-10</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-004-000000564</td>
+        <td>YANZA ENCALADA ELENA DEL CARMEN</td>
+        <td>157</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>111</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>008-003-000050228</td>
+        <td>SCANNEREXPRESS SEGURIDAD</td>
+        <td>53.99</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>110</td>
+       <td>2025-03-11</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>003-003-000059412</td>
+        <td>SCANNEREXPRESS SEGURIDAD</td>
+        <td>53</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>109</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td>Transpenac Sólidos GYE</td>
+        <td>001-001-000011425</td>
+        <td>COMPAÑIA DE VIGILANCIA Y SEGURIDAD</td>
+        <td>1050</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>108</td>
+       <td>2025-03-12</td>
+       <td>Operaciones</td>
+        <td>Transpenac Sólidos GYE</td>
+        <td>001-001-000159303</td>
+        <td>SATRACK S.A.</td>
+        <td>15.6</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>107</td>
+       <td>2025-03-07</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000239</td>
+        <td>JUELA UZHO CARLOS ALEJANDRO</td>
+        <td>240</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>106</td>
+       <td>2025-03-07</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000240</td>
+        <td>JUELA UZHO CARLOS ALEJANDRO</td>
+        <td>170</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>105</td>
+       <td>2025-03-10</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000017038</td>
+        <td>MAFRICO  S.A</td>
+        <td>739.6</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>104</td>
+       <td>2025-03-07</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-100-000001440</td>
+        <td>NEXO EGIDIO LAFFERTE ALANIZ</td>
+        <td>135.5</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>103</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-901-000016873</td>
+        <td>TRADEVISEC S.A.</td>
+        <td>75</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>102</td>
+       <td>2025-03-12</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000000244</td>
+        <td>JUELA UZHO CARLOS ALEJANDRO</td>
+        <td>710</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>101</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000000238</td>
+        <td>JUELA UZHO CARLOS ALEJANDRO</td>
+        <td>1563.63</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>100</td>
+       <td>2025-03-07</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-001-000366749</td>
+        <td>GRUPOAQUA S.A.</td>
+        <td>35</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>99</td>
+       <td>2025-03-07</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-001-000366750</td>
+        <td>GRUPOAQUA S.A.</td>
+        <td>43.75</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>98</td>
+       <td>2025-03-05</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000180</td>
+        <td>JUNCO LEON CARLOS SANTIAGO ABRAHAN</td>
+        <td>287.5</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>97</td>
+       <td>2025-03-05</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000000181</td>
+        <td>JUNCO LEON CARLOS SANTIAGO ABRAHAN</td>
+        <td>22.5</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>96</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000000104</td>
+        <td>BAQUE YOSA MAGDALENA ALEXANDRA</td>
+        <td>68</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>95</td>
+       <td>2025-03-10</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000000103</td>
+        <td>BAQUE YOSA MAGDALENA ALEXANDRA</td>
+        <td>135</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>94</td>
+       <td>2025-03-07</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000243</td>
+        <td>JUELA UZHO CARLOS ALEJANDRO</td>
+        <td>60</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>93</td>
+       <td>2025-03-07</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000241</td>
+        <td>JUELA UZHO CARLOS ALEJANDRO</td>
+        <td>224</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>92</td>
+       <td>2025-03-07</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000000242</td>
+        <td>JUELA UZHO CARLOS ALEJANDRO</td>
+        <td>70</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>91</td>
+       <td>2025-03-11</td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-001-000025421</td>
+        <td>HERRERA LOZANO KETTY EGDA AMINTA</td>
+        <td>14.4</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>90</td>
+       <td>2025-03-07</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000049566</td>
+        <td>JUNGHEINRICH ECUADOR SA</td>
+        <td>11076</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>89</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td>In-House Montecristi</td>
+        <td>002-002-000005396</td>
+        <td>MEZA ESPINOZA PROSPERO EUGENIO</td>
+        <td>1358.45</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>88</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000004684</td>
+        <td>QUALA  ECUADOR S.A.</td>
+        <td>141.19</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>85</td>
+       <td>2025-03-09</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-002-000027643</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>160</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>84</td>
+       <td>2025-03-09</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-002-000027644</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>160</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>83</td>
+       <td>2025-03-09</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-002-000027646</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>161</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>82</td>
+       <td>2025-03-09</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>001-002-000027647</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>69</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>81</td>
+       <td>2025-03-11</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000033484</td>
+        <td>EUROEXPRESO S.A.</td>
+        <td>10</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>80</td>
+       <td>2025-03-06</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000033483</td>
+        <td>EUROEXPRESO S.A.</td>
+        <td>215.86</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>79</td>
+       <td>2025-03-06</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000033482</td>
+        <td>EUROEXPRESO S.A.</td>
+        <td>10</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>78</td>
+       <td>2025-03-06</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000033481</td>
+        <td>EUROEXPRESO S.A.</td>
+        <td>259.56</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>77</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000000064</td>
+        <td>VEGA DELGADO KAREN ESTEFANIA</td>
+        <td>125</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>76</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>002-102-000001185</td>
+        <td>NUOTECNOLOGICA CIA. LTDA</td>
+        <td>654.3</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>75</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>002-102-000001182</td>
+        <td>NUOTECNOLOGICA CIA. LTDA</td>
+        <td>580.26</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>74</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>002-102-000001181</td>
+        <td>NUOTECNOLOGICA CIA. LTDA</td>
+        <td>49.16</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>73</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>002-102-000001184</td>
+        <td>NUOTECNOLOGICA CIA. LTDA</td>
+        <td>3600.4</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>72</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>002-102-000001183</td>
+        <td>NUOTECNOLOGICA CIA. LTDA</td>
+        <td>1113.7</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>71</td>
+       <td>2025-03-09</td>
+       <td>Operaciones</td>
+        <td>Calidad</td>
+        <td>001-002-000027642</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>650</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>70</td>
+       <td>2025-03-09</td>
+       <td>Operaciones</td>
+        <td>Calidad</td>
+        <td>001-002-000027645</td>
+        <td>RIZOBACTER ECUATORIANA C LTDA</td>
+        <td>450</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>69</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>008-003-000050192</td>
+        <td>SCANNEREXPRESS SEGURIDAD</td>
+        <td>55.07</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>68</td>
+       <td>2025-03-06</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>003-003-000059277</td>
+        <td>SCANNEREXPRESS SEGURIDAD</td>
+        <td>54.06</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>67</td>
+       <td>2025-03-06</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000000024</td>
+        <td>BELITAMA MONTERO KARLA YOMARA</td>
+        <td>5000</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>66</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-020-000166900</td>
+        <td>CHAMBA PEREZ EDISON GEOVANNY</td>
+        <td>89.35</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>65</td>
+       <td>2025-03-07</td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000045314</td>
+        <td>AQUARENT & SERVICE C.A</td>
+        <td>149</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>64</td>
+       <td>2025-03-07</td>
+       <td>Administración</td>
+        <td></td>
+        <td>033-999-002637932</td>
+        <td>CNEL EP</td>
+        <td>38.93</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>63</td>
+       <td>2025-03-19</td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>003-003-000017954</td>
+        <td>DIAZCE S.A.</td>
+        <td>84.16</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>62</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-999-111120300</td>
+        <td>EMPRESA ELECTRICA QUITO</td>
+        <td>2203.86</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>61</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-012-058982906</td>
+        <td>EMPRESA PUBLICA METROPOLITANA DE AG</td>
+        <td>59.98</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>60</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-012-058995996</td>
+        <td>EMPRESA PUBLICA METROPOLITANA DE AG</td>
+        <td>127.99</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>59</td>
+       <td>2025-03-08</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-012-058993149</td>
+        <td>EMPRESA PUBLICA METROPOLITANA DE AG</td>
+        <td>4.44</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>58</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000049536</td>
+        <td>JUNGHEINRICH ECUADOR SA</td>
+        <td>1100</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>57</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000049535</td>
+        <td>JUNGHEINRICH ECUADOR SA</td>
+        <td>1100</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>56</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-002-000049534</td>
+        <td>JUNGHEINRICH ECUADOR SA</td>
+        <td>1100</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>55</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td>Calidad</td>
+        <td>001-001-000171419</td>
+        <td>ELICROM CIA LTDA</td>
+        <td>10</td>
+        <td>Rechazada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>54</td>
+       <td>2025-01-05</td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-100-000001424</td>
+        <td>NEXO EGIDIO LAFFERTE ALANIZ</td>
+        <td>195.4</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>53</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000001080</td>
+        <td>ICD GLOBAL IMPORTS S.A.S.</td>
+        <td>231</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>52</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-001-000001079</td>
+        <td>ICD GLOBAL IMPORTS S.A.S.</td>
+        <td>171</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>51</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000145209</td>
+        <td>SISMODE CIA. LTDA.</td>
+        <td>483.62</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>50</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000171418</td>
+        <td>ELICROM CIA LTDA</td>
+        <td>90</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>49</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000171426</td>
+        <td>ELICROM CIA LTDA</td>
+        <td>135</td>
+        <td>Anulada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>48</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000171425</td>
+        <td>ELICROM CIA LTDA</td>
+        <td>105</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>47</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000171423</td>
+        <td>ELICROM CIA LTDA</td>
+        <td>70</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>46</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-001-000171420</td>
+        <td>ELICROM CIA LTDA</td>
+        <td>90</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>45</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000032345</td>
+        <td>TRABELECT S.A. TRABAJOS ELECTRICOS</td>
+        <td>1095</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>44</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-001-000025384</td>
+        <td>HERRERA LOZANO KETTY EGDA AMINTA</td>
+        <td>70.5</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>43</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-001-000025385</td>
+        <td>HERRERA LOZANO KETTY EGDA AMINTA</td>
+        <td>684</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>42</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>003-002-000049071</td>
+        <td>TONICOMSA S.A.</td>
+        <td>86.4</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>41</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>003-002-000049084</td>
+        <td>TONICOMSA S.A.</td>
+        <td>26.8</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>40</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>003-002-000048969</td>
+        <td>TONICOMSA S.A.</td>
+        <td>26.8</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>39</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>003-002-000048966</td>
+        <td>TONICOMSA S.A.</td>
+        <td>53.6</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>38</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>003-002-000048964</td>
+        <td>TONICOMSA S.A.</td>
+        <td>62.6</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>37</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>003-002-000048963</td>
+        <td>TONICOMSA S.A.</td>
+        <td>26.8</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>36</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-065-000000130</td>
+        <td>LUCAS CUSME CRISTHIAN OSWALDO </td>
+        <td>871.5</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>35</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000000280</td>
+        <td>COMPAÑIA DE SERVICIO DE TAXI</td>
+        <td>134.3</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>34</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>003-003-000017308</td>
+        <td>DIAZCE S.A.</td>
+        <td>126.24</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>33</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-300-000001389</td>
+        <td>AVANPLUS S.A.</td>
+        <td>292.62</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>32</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-300-000001401</td>
+        <td>AVANPLUS S.A.</td>
+        <td>7011.57</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>31</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-221-003800060</td>
+        <td>CONSORCIO ECUATORIANO DE</td>
+        <td>300</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>30</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-221-003800059</td>
+        <td>CONSORCIO ECUATORIANO DE</td>
+        <td>1113</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>29</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-064-033910751</td>
+        <td>CONSORCIO ECUATORIANO DE</td>
+        <td>2341.18</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>28</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>002-002-000000007</td>
+        <td>SERVICIO DE ATENCION Y TRASLADOS ME</td>
+        <td>140</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>27</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-002-000015916</td>
+        <td>SERVICIO DE ATENCION Y TRASLADOS ME</td>
+        <td>780</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>26</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-100-000000617</td>
+        <td>MITE VELEZ LUZ DEL CARMEN</td>
+        <td>495</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>25</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td>Liquido CD3</td>
+        <td>002-001-000000088</td>
+        <td>JOSTHIN MATIAS POGO LABANDA</td>
+        <td>200</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>24</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-001-000000820</td>
+        <td>INMOBILIARIA Y CONSTRUCTORA MANTA</td>
+        <td>9</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>23</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-001-000000823</td>
+        <td>INMOBILIARIA Y CONSTRUCTORA MANTA</td>
+        <td>3</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>22</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-001-000000822</td>
+        <td>INMOBILIARIA Y CONSTRUCTORA MANTA</td>
+        <td>3</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>21</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-001-000000819</td>
+        <td>INMOBILIARIA Y CONSTRUCTORA MANTA</td>
+        <td>200</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>20</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-001-000000818</td>
+        <td>INMOBILIARIA Y CONSTRUCTORA MANTA</td>
+        <td>851</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>19</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>002-001-000000817</td>
+        <td>INMOBILIARIA Y CONSTRUCTORA MANTA</td>
+        <td>4680</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>18</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td></td>
+        <td>001-002-000001580</td>
+        <td>HEINERT ABOGADOS S.A.</td>
+        <td>600</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>17</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-002-000009676</td>
+        <td>ECIJA-GUAYAQUIL S.A.</td>
+        <td>600</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>16</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>001-100-000000132</td>
+        <td>ARTIKO S.A.</td>
+        <td>12000</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>15</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>A 5795</td>
+        <td>UNISOLUTIONS-MEX</td>
+        <td>1541</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>14</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>A 5796</td>
+        <td>UNISOLUTIONS-MEX</td>
+        <td>1809</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>13</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>002-011-000388941</td>
+        <td>TELCONET S A</td>
+        <td>955.17</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>12</td>
+       <td></td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>002-011-000388276</td>
+        <td>TELCONET S A</td>
+        <td>200</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>11</td>
+       <td></td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>002-011-000388252</td>
+        <td>TELCONET S A</td>
+        <td>170</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>10</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>002-011-000388157</td>
+        <td>TELCONET S A</td>
+        <td>456.1</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>9</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>002-011-000387660</td>
+        <td>TELCONET S A</td>
+        <td>966.59</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>8</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-002-000006300</td>
+        <td>SIPECOM S.A</td>
+        <td>366.67</td>
+        <td>Anulada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>7</td>
+       <td>2025-03-05</td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>001-002-000006299</td>
+        <td>SIPECOM S.A</td>
+        <td>366.67</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>6</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td>Transpenac Sólidos GYE</td>
+        <td>001-001-000158114</td>
+        <td>SATRACK S.A.</td>
+        <td>248.48</td>
+        <td>Rechazada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>5</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td>Transpenac Sólidos GYE</td>
+        <td>001-001-000158091</td>
+        <td>SATRACK S.A.</td>
+        <td>216.32</td>
+        <td>Rechazada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr><tr>
+       <td>4</td>
+       <td></td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>002-001-000022922</td>
+        <td>INTERTELNET S.A.</td>
+        <td>160</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>3</td>
+       <td></td>
+       <td>Administración</td>
+        <td>IT</td>
+        <td>002-001-000022921</td>
+        <td>INTERTELNET S.A.</td>
+        <td>177</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>2</td>
+       <td></td>
+       <td>Administración</td>
+        <td></td>
+        <td>026-100-063310593</td>
+        <td>INTERNATIONAL WATER SERVICES</td>
+        <td>408.95</td>
+        <td>Contabilizada</td>
+        <td>Daysi Toala</td>
+        
+        </tr><tr>
+       <td>1</td>
+       <td></td>
+       <td>Gestión Humana</td>
+        <td>GGHH</td>
+        <td>001-001-000000257</td>
+        <td>PANTA CASTRO MIGDALIA ARACELI</td>
+        <td>1677</td>
+        <td>Contabilizada</td>
+        <td>Catalina Arango</td>
+        
+        </tr><tr>
+       <td>0</td>
+       <td></td>
+       <td>Operaciones</td>
+        <td></td>
+        <td>001-010-000000008</td>
+        <td>SUAREZ LOPEZ KEVIN LEONARDO</td>
+        <td>1764.44</td>
+        <td>Contabilizada</td>
+        <td>Oswaldo Campos</td>
+        
+        </tr></table>
+
+    

@@ -1,0 +1,93 @@
+
+						.ui-autocomplete { 
+							   height: 200px;
+							   overflow-y: scroll;
+							   overflow-x: hidden;
+							 }
+						  /* autocomplete de bootrap estilo*/
+						.ui-autocomplete {
+							position: absolute;
+							z-index: 100000;
+							cursor: default;
+							padding: 0;
+							margin-top: 2px;
+							list-style: none;
+							background-color: #ffffff;
+							border: 1px solid #ccc;
+							-webkit-border-radius: 5px;
+							   -moz-border-radius: 5px;
+									border-radius: 5px;
+							-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+							   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+									box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+						}
+						.ui-autocomplete > li {
+						  padding: 3px 20px;
+						}
+						.ui-autocomplete > li.ui-state-focus {
+						  color: #ffffff;
+						  background-color: #0088cc;
+						}
+						
+						
+						/** LOAD**/
+						.modal1
+        {
+            position:fixed;
+            z-index: 999;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left:0;
+            background-color: Black;
+            filter: alpha(opacity=60);
+            opacity: 0.7;
+            -moz-opacity: 0.7;
+        }
+		
+		.center1
+        {
+            margin: 300px auto;
+            padding: 10px;
+            width: 300px;
+            background-color: white;
+            border-color: black;
+            border-radius: 10px;
+            filter: alpha(opacity=10);
+            opacity: 2;
+            -moz-opacity: 1;
+            font-size: large;
+             color: black; 
+             border-style: solid;
+        }
+		
+		
+		.modal2
+        {
+            position:fixed;
+            z-index: 999999999;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left:0;
+            background-color: Black;
+            filter: alpha(opacity=60);
+            opacity: 0.7;
+            -moz-opacity: 0.7;
+        }
+		
+		.center2
+        {
+            margin: 300px auto;
+            padding: 10px;
+            width: 300px;
+            background-color: white;
+            border-color: black;
+            border-radius: 10px;
+            filter: alpha(opacity=10);
+            opacity: 2;
+            -moz-opacity: 1;
+            font-size: large;
+             color: black; 
+             border-style: solid;
+        }

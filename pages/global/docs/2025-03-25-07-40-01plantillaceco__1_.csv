@@ -1,0 +1,75 @@
+CECO;PORCENTAJE;;;;ceco;descripcion;cd;empresa
+258OD032E2 - DESCRIPCIÓN CECO;12;;;;258A0C9904;GA ADM;Guayaquil;Logiran
+258ODN33N3 - DESCRIPCIÓN CECO;34;;;;258A0B9904;GA GERENCIA GENERAL;Guayaquil;Logiran
+258OD032E2 - DESCRIPCIÓN CECO;44;;;;258A0I9904;GA CONT;Guayaquil;Logiran
+258ODN33N3 - DESCRIPCIÓN CECO;10;;;;258A0J9904;GA RRHH;Guayaquil;Logiran
+;;;;;258A0K9904;GA LEGAL;Guayaquil;Logiran
+;;;;;258A0N9904;GA FINANZAS;Guayaquil;Logiran
+;;;;;258A0O9904;GA COMPRAS;Guayaquil;Logiran
+;;;;;258E0A9904;OFIC. PRINCIPAL;Guayaquil;Logiran
+;;;;;258DD09905;GA VENTAS;Guayaquil;Logiran
+;;;;;258A0F9905;GV TI;Guayaquil;Logiran
+;;;;;258A0F9903;CIF TI (SISTEMAS);Guayaquil;Logiran
+;;;;;258OD032E2;ALM GYE;Guayaquil;Logiran
+;;;;;258B0C9903;CIF CALIDAD;Guayaquil;Logiran
+;;;;;258B099903;SOP OP COMUN;Guayaquil;Logiran
+;;;;;258B0Q9903;CIF SEG INT;Guayaquil;Logiran
+;;;;;258ODX3702;ARCH GYE;Guayaquil;Logiran
+;;;;;258ODN33M2;SOL GYE FP;Guayaquil;Logiran
+;;;;;258ODO33M2;SOL GYE FT;Guayaquil;Logiran
+;;;;;258ODN33N2;CDF LIQ GYE;Guayaquil;Logiran
+;;;;;258GE04302;CDF ALQUILADOS GYE;Guayaquil;Logiran
+;;;;;258ODN33N3;CIF LIQ GYE;Guayaquil;Logiran
+;;;;;258ODN33N1;LIQ GYE;Guayaquil;Logiran
+;;;;;258OD082A2;ALM REF GYQ CFD;Guayaquil;Logiran
+;;;;;258OE032E2;ALM UIO;Quito;Logiran
+;;;;;258OEX3702;ARCH UIO;Quito;Logiran
+;;;;;258OEN33M2;SOL UIO FP;Quito;Logiran
+;;;;;258OEO33M2;SOL UIO FT;Quito;Logiran
+;;;;;258OE082A2;CDF ALM REFRIGE QUI;Quito;Logiran
+;;;;;258QE04302;CDF ALQUILADOS UIO;Quito;Logiran
+;;;;;258DD09905;GA VENTAS;Quito;Logiran
+;;;;;258A0E9904;GA ADM;Quito;Logiran
+;;;;;258E0A9904;OFIC. PRINCIPAL;Quito;Logiran
+;;;;;258BE99903;SOP OP COMUN UIO;Quito;Logiran
+;;;;;258OEO33N1;CDV QUI FT LIQ;Quito;Logiran
+;;;;;258OEO33N2;CDF QUI FT LIQ;Quito;Logiran
+;;;;;258OHO33N1;CDV MTA FT LIQ;Manta;Logiran
+;;;;;258OHO33N2;CDF MTA FT LIQ;Manta;Logiran
+;;;;;258HE04302;ALQ LIQ MTA;Manta;Logiran
+;;;;;258OH032E2;ALM MTA;Manta;Logiran
+;;;;;258OI032M2;ALM ONSITE MNB;Manta;Logiran
+;;;;;258HA04302;ALQ ALM MANTA;Manta;Logiran
+;;;;;258OBO33N1;CDV DIST BHY FT LIQ;Babahoyo;Logiran
+;;;;;258OBO33N2;CDF DIST BHY FT LIQ;Babahoyo;Logiran
+;;;;;258BE04302;ALQUILER BABAHOYO;Babahoyo;Logiran
+;;;;;258OFN33N1;CDV DIST MCH FT LIQ;Machala;Logiran
+;;;;;258OFN33N2;CDF DIST MCH FT LIQ;Machala;Logiran
+;;;;;258FA04302;ALQ LIQ MCH;Machala;Logiran
+;;;;;258OF032E2;ALM MCH;Machala;Logiran
+;;;;;258FE04302;ALQ ALM MCH;Machala;Logiran
+;;;;;258OGN33N1;CDV DIST BHY FT MLG;Milagro;Logiran
+;;;;;258OGN33N2;CDF DIST BHY FT MLG;Milagro;Logiran
+;;;;;258MA04302;ALQ LIQ MLG;Milagro;Logiran
+;;;;;271000T2C4;GA ADM;Guayaquil;Transpenac
+;;;;;271000T2L4;GA GERENCIA GENERAL;Guayaquil;Transpenac
+;;;;;271000T2M4;GA COMPRAS;Guayaquil;Transpenac
+;;;;;271000T2J4;GA CONT;Guayaquil;Transpenac
+;;;;;271000T2H4;GA FINANZAS;Guayaquil;Transpenac
+;;;;;271000T2E4;GA RRHH;Guayaquil;Transpenac
+;;;;;271000T2D4;GA LEGAL;Guayaquil;Transpenac
+;;;;;271000T0C4;GA FINANCIEROS CERT.CHEQ;Guayaquil;Transpenac
+;;;;;271DD09905;GA VENTAS;Guayaquil;Transpenac
+;;;;;271000T2K5;GV TI;Guayaquil;Transpenac
+;;;;;271000T2K3;CIF TI (SISTEMAS);Guayaquil;Transpenac
+;;;;;271000T4Q3;CIF SEG INT;Guayaquil;Transpenac
+;;;;;271AVI3402;SOL GYE FP;Guayaquil;Transpenac
+;;;;;271AWI3402;SOL GYE FT;Guayaquil;Transpenac
+;;;;;271000T493;SOP OP COMUN;Guayaquil;Transpenac
+;;;;;271GE04302;CDF ALQUILADOS GYE;Guayaquil;Transpenac
+;;;;;271BWI3402;SOL UIO FT;Quito;Transpenac
+;;;;;271000T2C4;GA ADM;Quito;Transpenac
+;;;;;271000T0C4 ;OFIC. PRINCIPAL;Quito;Transpenac
+;;;;;271000T2B4;ADM GUILERMO PELAEZ;Quito;Transpenac
+;;;;;271CWI3401;CDV TRASL MTA FT;Manta;Transpenac
+;;;;;271CWI3402;CDF TRASL MTA FT;Manta;Transpenac

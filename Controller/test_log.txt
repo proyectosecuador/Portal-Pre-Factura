@@ -1,0 +1,5 @@
+[2026-03-31 21:14:23] === INICIO TEST ===
+[2026-03-31 21:14:23] Sesión ID: 3g015bv6066d4urfgh6ckk8e18
+[2026-03-31 21:14:23] Usuario ID: 29
+[2026-03-31 21:14:23] PASO 1: Verificando recepción de archivo
+[2026-03-31 21:14:23] ERROR: No se recibió archivo
