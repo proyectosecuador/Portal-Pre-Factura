@@ -111,6 +111,9 @@ if (!$factura) {
     die('Factura no encontrada');
 }
 
+$sede = $factura['sede'];
+$aprobador = $factura['aprobador'];
+
 // ============================================
 // 2. OBTENER DATOS DE CLIENTE
 // ============================================
@@ -398,7 +401,8 @@ $html = '<!DOCTYPE html>
             <p><strong>Nombre de Empresa:</strong>' . htmlspecialchars($cliente['nombre_comercial'] ?? 'Arcor Alimentos Bolivia S.A.') . '</p>
             <p><strong>Razón Social:</strong> ' . htmlspecialchars($cliente['razon_social'] ?? '') . '</p>
             <p><strong>NIT:</strong> ' . htmlspecialchars($cliente['nit'] ?? '') . '</p>
-            <p><strong>Aprobador:</strong> ' . htmlspecialchars($cliente['aprobador'] ?? 'No asignado') . '</p>
+            <p><strong>Aprobador:</strong> ' . htmlspecialchars($factura['aprobador'] ?? 'No asignado') . '</p>
+            <p><strong>Sede:</strong> ' . htmlspecialchars($factura['sede'] ?? 'No asignado') . '</p>
             <p><strong>Período:</strong> ' . formatearFechaLetras($factura['fecha1']) . ' al ' . formatearFechaLetras($factura['fecha2']) . '</p>
         </div>
     </div>
