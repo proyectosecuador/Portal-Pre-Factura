@@ -1,5 +1,7 @@
 /**
  * fa_crear_arcor.js
+ * JavaScript para la creación/edición de facturas de Arcor
+ * MODIFICADO: Soporte para auto-detectar sede desde archivo de despacho
  */
 
 let moduloActual = '';
@@ -28,6 +30,11 @@ $(document).ready(function() {
         console.log('🆕 CREANDO NUEVA FACTURA con ID temporal:', facturaTempId);
     }
     
+    // Cargar datos existentes si es edición
+    if (registroId > 0) {
+        cargarDatosExistentes();
+    }
+    
     const moduloActivo = window.moduloActivo || '';
     console.log('📌 Módulo activo desde PHP:', moduloActivo);
     
@@ -41,6 +48,79 @@ $(document).ready(function() {
         setTimeout(() => window.abrirModalServicios(), 500);
     }
 });
+
+function cargarDatosExistentes() {
+    // Cargar datos de la factura existente
+    $.ajax({
+        url: '../../Controller/fa_get_factura.php',
+        method: 'GET',
+        data: { id: registroId },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success && response.data) {
+                const factura = response.data;
+                
+                // Cargar sede
+                if (factura.sede) {
+                    const selectSede = document.getElementById('sede_registro');
+                    if (selectSede) {
+                        // Verificar si existe la opción
+                        let existe = false;
+                        for (let i = 0; i < selectSede.options.length; i++) {
+                            if (selectSede.options[i].value === factura.sede) {
+                                existe = true;
+                                break;
+                            }
+                        }
+                        if (!existe) {
+                            const newOption = document.createElement('option');
+                            newOption.value = factura.sede;
+                            newOption.textContent = factura.sede;
+                            selectSede.appendChild(newOption);
+                        }
+                        selectSede.value = factura.sede;
+                    }
+                }
+                
+                // Cargar fechas
+                if (factura.fecha1) {
+                    document.getElementById('fecha_inicio').value = factura.fecha1.split(' ')[0];
+                }
+                if (factura.fecha2) {
+                    document.getElementById('fecha_fin').value = factura.fecha2.split(' ')[0];
+                }
+                
+                // Marcar módulos completados
+                if (factura.recepcion == 1) marcarModuloCompletadoVisual('recepcion');
+                if (factura.despacho == 1) marcarModuloCompletadoVisual('despacho');
+                if (factura.ocupabilidad == 1) marcarModuloCompletadoVisual('ocupabilidad');
+                if (factura.servicios == 1) marcarModuloCompletadoVisual('servicios');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error cargando datos existentes:', error);
+        }
+    });
+}
+
+function marcarModuloCompletadoVisual(modulo) {
+    const card = document.getElementById(`modulo-${modulo}`);
+    if (card) card.classList.add('completado');
+    
+    // Deshabilitar botones de procesar
+    const btn = document.getElementById(`btn-procesar-${modulo}`);
+    if (btn) btn.disabled = true;
+    
+    // Mostrar datos extraídos si existen
+    if (modulo === 'ocupabilidad' && datosProcesados.ocupabilidad) {
+        mostrarDatosOcupabilidad(datosProcesados.ocupabilidad.datos);
+    }
+    if (modulo === 'servicios' && datosProcesados.servicios) {
+        mostrarDatosServicios(datosProcesados.servicios);
+    }
+    
+    actualizarProgreso();
+}
 
 // ============================================
 // FUNCIONES PARA FILTROS DE FECHA
@@ -182,7 +262,7 @@ window.mostrarVistaPrevia = function(tipo) {
     let url = tipo === 'recepcion' ? '../../Controller/fa_recepcion_controller.php' : '../../Controller/fa_despacho_controller.php';
     
     $('#modalVistaPrevia').modal('show');
-    document.getElementById('preview-body').innerHTML = '发展<td colspan="20" class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><br>Procesando...</div>';
+    document.getElementById('preview-body').innerHTML = '<tr><td colspan="20" class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><br>Procesando...</td></tr>';
     
     fetch(url, { method: 'POST', body: formData })
         .then(res => res.json())
@@ -191,6 +271,48 @@ window.mostrarVistaPrevia = function(tipo) {
             datosProcesados[tipo] = data;
             generarTablaPreview(tipo, data);
             actualizarEstadisticasModulo(tipo, data.stats);
+            
+            // ============================================
+            // NUEVO: Si es despacho y se detectó sede, actualizar campo
+            // ============================================
+            if (tipo === 'despacho' && data.sede) {
+                const selectSede = document.getElementById('sede_registro');
+                if (selectSede) {
+                    // Verificar si la sede existe en el select
+                    let sedeExiste = false;
+                    for (let i = 0; i < selectSede.options.length; i++) {
+                        if (selectSede.options[i].value === data.sede) {
+                            sedeExiste = true;
+                            break;
+                        }
+                    }
+                    
+                    if (sedeExiste) {
+                        selectSede.value = data.sede;
+                        console.log(`🏢 Sede automática asignada: ${data.sede}`);
+                    } else {
+                        // Si no existe, agregar una opción
+                        const newOption = document.createElement('option');
+                        newOption.value = data.sede;
+                        newOption.textContent = data.sede;
+                        selectSede.appendChild(newOption);
+                        selectSede.value = data.sede;
+                        console.log(`🏢 Nueva sede agregada: ${data.sede}`);
+                    }
+                    
+                    // Mostrar notificación
+                    Swal.fire({
+                        title: 'Sede Detectada',
+                        html: `Se ha detectado la sede <strong>${data.sede}</strong> desde el archivo de despacho.<br><small>WHSEID: ${data.whseid || 'N/A'}</small>`,
+                        icon: 'info',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                }
+            }
+            
             document.getElementById('btn-confirmar').disabled = false;
             Swal.fire('Éxito', `${data.total_registros} registros encontrados`, 'success');
         })
@@ -220,6 +342,19 @@ function generarTablaPreview(tipo, data) {
     });
     
     document.getElementById('total-registros').textContent = data.total_registros || 0;
+    
+    // Actualizar información de filtros
+    const filterStats = document.getElementById('filterStats');
+    if (filterStats && data.stats) {
+        let statsHtml = '';
+        if (data.stats.fecha_min && data.stats.fecha_max) {
+            statsHtml += `<span class="filter-stat-badge"><i class="fa fa-calendar"></i> Rango: ${data.stats.fecha_min} - ${data.stats.fecha_max}</span>`;
+        }
+        if (data.stats.filas_filtradas_fecha > 0) {
+            statsHtml += `<span class="filter-stat-badge"><i class="fa fa-filter"></i> Filtradas: ${data.stats.filas_filtradas_fecha}</span>`;
+        }
+        filterStats.innerHTML = statsHtml;
+    }
 }
 
 function actualizarEstadisticasModulo(tipo, stats) {
@@ -238,6 +373,18 @@ function actualizarEstadisticasModulo(tipo, stats) {
         document.getElementById('despacho-total').textContent = stats.total_filas || 0;
         document.getElementById('despacho-unidades').textContent = stats.total_unidades || 0;
         if (stats.fecha_min && stats.fecha_max) document.getElementById('despacho-periodo').textContent = `${stats.fecha_min} - ${stats.fecha_max}`;
+        
+        // Mostrar sede si está disponible
+        if (stats.sede) {
+            const sedeInfo = document.createElement('div');
+            sedeInfo.className = 'alert alert-info mt-2';
+            sedeInfo.innerHTML = `<i class="fa fa-building"></i> Sede detectada: <strong>${stats.sede}</strong>`;
+            const dataDiv = document.getElementById(`data-${tipo}`);
+            if (dataDiv && !dataDiv.querySelector('.sede-info')) {
+                sedeInfo.className = 'sede-info alert alert-info mt-2';
+                dataDiv.appendChild(sedeInfo);
+            }
+        }
     }
 }
 
@@ -270,30 +417,48 @@ window.confirmarProcesamiento = function() {
         fecha_hasta: document.getElementById('filtro-fecha-hasta')?.value
     };
     
+    // ============================================
+    // NUEVO: Si es despacho, incluir la sede detectada
+    // ============================================
+    if (moduloActual === 'despacho' && datos.sede) {
+        payload.sede = datos.sede;
+        console.log('🏢 Enviando sede al servidor:', datos.sede);
+    }
+    
     const url = moduloActual === 'recepcion' ? '../../Controller/fa_guardar_recepcion.php' : '../../Controller/fa_guardar_despacho.php';
     
     Swal.fire({ title: 'Guardando...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
     
-    fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-        .then(res => res.json())
-        .then(data => {
-            if (!data.success) throw new Error(data.error);
-            
-            if (data.factura_id || data.id_factura) {
-                const nuevoId = data.factura_id || data.id_factura;
-                if (nuevoId && nuevoId !== facturaTempId) {
-                    facturaTempId = nuevoId;
-                    registroId = nuevoId;
-                    window.registroId = nuevoId;
-                    console.log('🔄 ID de factura ACTUALIZADO a:', facturaTempId);
-                }
+    fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (!data.success) throw new Error(data.error);
+        
+        if (data.factura_id || data.id_factura) {
+            const nuevoId = data.factura_id || data.id_factura;
+            if (nuevoId && nuevoId !== facturaTempId) {
+                facturaTempId = nuevoId;
+                registroId = nuevoId;
+                window.registroId = nuevoId;
+                console.log('🔄 ID de factura ACTUALIZADO a:', facturaTempId);
             }
-            
-            Swal.fire('Éxito', `Se guardaron ${data.registros_guardados || data.insertados} registros`, 'success');
-            marcarModuloCompletado(moduloActual);
-            $('#modalVistaPrevia').modal('hide');
-        })
-        .catch(error => Swal.fire('Error', error.message, 'error'));
+        }
+        
+        // Mostrar mensaje con sede si se guardó
+        let mensaje = `Se guardaron ${data.registros_guardados || data.insertados} registros`;
+        if (data.sede_guardada) {
+            mensaje += ` con sede: ${data.sede_guardada}`;
+        }
+        
+        Swal.fire('Éxito', mensaje, 'success');
+        marcarModuloCompletado(moduloActual);
+        $('#modalVistaPrevia').modal('hide');
+    })
+    .catch(error => Swal.fire('Error', error.message, 'error'));
 };
 
 function marcarModuloCompletado(modulo) {
@@ -302,34 +467,42 @@ function marcarModuloCompletado(modulo) {
     
     // Para ocupabilidad, actualizar la vista
     if (modulo === 'ocupabilidad' && datosProcesados.ocupabilidad && datosProcesados.ocupabilidad.datos) {
-        const dataExtracted = document.getElementById('data-ocupabilidad');
-        if (dataExtracted) {
-            dataExtracted.style.display = 'block';
-            const total = datosProcesados.ocupabilidad.datos.reduce((sum, d) => sum + d.cantidad, 0);
-            document.getElementById('ocupabilidad-total').textContent = total;
-            document.getElementById('ocupabilidad-racks').textContent = datosProcesados.ocupabilidad.datos.length;
-            
-            let resumen = '';
-            datosProcesados.ocupabilidad.datos.forEach(d => {
-                resumen += `${d.tipo}: ${d.cantidad}\n`;
-            });
-            document.getElementById('ocupabilidad-nivel').textContent = resumen.substring(0, 50) + (resumen.length > 50 ? '...' : '');
-        }
+        mostrarDatosOcupabilidad(datosProcesados.ocupabilidad.datos);
     }
     
     // Para servicios, actualizar la vista
     if (modulo === 'servicios' && datosProcesados.servicios && datosProcesados.servicios.datos) {
-        const dataExtracted = document.getElementById('data-servicios');
-        if (dataExtracted) {
-            dataExtracted.style.display = 'block';
-            document.getElementById('servicios-total').textContent = datosProcesados.servicios.datos.length;
-            document.getElementById('servicios-monto').textContent = 'Bs ' + (datosProcesados.servicios.total || 0).toFixed(2);
-        }
+        mostrarDatosServicios(datosProcesados.servicios);
     }
     
     const btn = document.getElementById(`btn-procesar-${modulo}`);
     if (btn) btn.disabled = true;
     actualizarProgreso();
+}
+
+function mostrarDatosOcupabilidad(datos) {
+    const dataExtracted = document.getElementById('data-ocupabilidad');
+    if (dataExtracted) {
+        dataExtracted.style.display = 'block';
+        const total = datos.reduce((sum, d) => sum + d.cantidad, 0);
+        document.getElementById('ocupabilidad-total').textContent = total;
+        document.getElementById('ocupabilidad-racks').textContent = datos.length;
+        
+        let resumen = '';
+        datos.forEach(d => {
+            resumen += `${d.tipo}: ${d.cantidad}\n`;
+        });
+        document.getElementById('ocupabilidad-nivel').textContent = resumen.substring(0, 50) + (resumen.length > 50 ? '...' : '');
+    }
+}
+
+function mostrarDatosServicios(datos) {
+    const dataExtracted = document.getElementById('data-servicios');
+    if (dataExtracted) {
+        dataExtracted.style.display = 'block';
+        document.getElementById('servicios-total').textContent = datos.datos ? datos.datos.length : 0;
+        document.getElementById('servicios-monto').textContent = 'Bs ' + (datos.total || 0).toFixed(2);
+    }
 }
 
 function actualizarProgreso() {
@@ -340,9 +513,13 @@ function actualizarProgreso() {
     if (datosProcesados.servicios) completados++;
     
     const porcentaje = (completados / 4) * 100;
-    document.getElementById('modulosCompletados').textContent = completados;
-    document.getElementById('progresoPorcentaje').textContent = Math.round(porcentaje);
-    document.getElementById('progressFill').style.width = porcentaje + '%';
+    const modulosCompletadosSpan = document.getElementById('modulosCompletados');
+    const progresoPorcentajeSpan = document.getElementById('progresoPorcentaje');
+    const progressFill = document.getElementById('progressFill');
+    
+    if (modulosCompletadosSpan) modulosCompletadosSpan.textContent = completados;
+    if (progresoPorcentajeSpan) progresoPorcentajeSpan.textContent = Math.round(porcentaje);
+    if (progressFill) progressFill.style.width = porcentaje + '%';
 }
 
 // ============================================
@@ -367,14 +544,19 @@ function limpiarModalOcupabilidad() {
     const tbody = document.getElementById('ocupabilidad-body');
     if (!tbody) return;
     
-    while (tbody.children.length > 2) {
-        tbody.removeChild(tbody.lastChild);
-    }
-    
+    // Mantener solo las dos filas por defecto
+    const filasDefecto = ['Posiciones rack', 'Posiciones rack (pallet adicional)'];
     const filas = tbody.querySelectorAll('.fila-ocupabilidad');
+    
     filas.forEach(fila => {
-        const cantidadInput = fila.querySelector('.cantidad-posicion');
-        if (cantidadInput) cantidadInput.value = '';
+        const tipoInput = fila.querySelector('.tipo-posicion');
+        const tipo = tipoInput ? tipoInput.value : '';
+        if (!filasDefecto.includes(tipo)) {
+            fila.remove();
+        } else {
+            const cantidadInput = fila.querySelector('.cantidad-posicion');
+            if (cantidadInput) cantidadInput.value = '';
+        }
     });
 }
 
@@ -384,30 +566,53 @@ function cargarDatosOcupabilidad(datos) {
     const tbody = document.getElementById('ocupabilidad-body');
     if (!tbody) return;
     
-    tbody.innerHTML = '';
+    // Limpiar filas existentes excepto las que coinciden con datos
+    const filasDefecto = ['Posiciones rack', 'Posiciones rack (pallet adicional)'];
+    const filasExistentes = tbody.querySelectorAll('.fila-ocupabilidad');
     
-    datos.forEach((item) => {
-        const nuevaFila = document.createElement('tr');
-        nuevaFila.className = 'fila-ocupabilidad';
-        nuevaFila.setAttribute('data-tipo', item.tipo);
+    // Actualizar filas existentes que coincidan
+    datos.forEach(item => {
+        let filaExistente = null;
+        for (let f of filasExistentes) {
+            const tipoInput = f.querySelector('.tipo-posicion');
+            if (tipoInput && tipoInput.value === item.tipo) {
+                filaExistente = f;
+                break;
+            }
+        }
         
-        const esFilaDefecto = (item.tipo === 'Posiciones rack' || item.tipo === 'Posiciones rack (pallet adicional)');
-        
-        nuevaFila.innerHTML = `
-            71
-                <input type="text" class="form-control tipo-posicion" value="${escapeHtml(item.tipo)}" ${esFilaDefecto ? 'readonly style="background: #f5f5f5;"' : ''}>
-            </div>
-            71
-                <input type="number" class="form-control cantidad-posicion" value="${item.cantidad}" placeholder="Ingrese cantidad" min="0" onchange="actualizarTotalOcupabilidad()">
-            </div>
-            <td class="text-center">
-                <button class="btn btn-danger btn-sm eliminar-fila" onclick="eliminarFilaOcupabilidad(this)" ${esFilaDefecto ? 'style="display: none;" disabled' : ''}>
-                    <i class="fa fa-trash"></i>
-                </button>
-            </div>
-        `;
-        tbody.appendChild(nuevaFila);
+        if (filaExistente) {
+            const cantidadInput = filaExistente.querySelector('.cantidad-posicion');
+            if (cantidadInput) cantidadInput.value = item.cantidad;
+        } else if (!filasDefecto.includes(item.tipo)) {
+            // Agregar nueva fila para tipos no estándar
+            agregarFilaOcupabilidadConDatos(item.tipo, item.cantidad);
+        }
     });
+}
+
+function agregarFilaOcupabilidadConDatos(tipo, cantidad) {
+    const tbody = document.getElementById('ocupabilidad-body');
+    if (!tbody) return;
+    
+    const nuevaFila = document.createElement('tr');
+    nuevaFila.className = 'fila-ocupabilidad';
+    nuevaFila.setAttribute('data-tipo', tipo);
+    
+    nuevaFila.innerHTML = `
+        <td>
+            <input type="text" class="form-control tipo-posicion" value="${escapeHtml(tipo)}">
+        </td>
+        <td>
+            <input type="number" class="form-control cantidad-posicion" value="${cantidad}" placeholder="Ingrese cantidad" min="0" onchange="actualizarTotalOcupabilidad()">
+        </td>
+        <td class="text-center">
+            <button class="btn btn-danger btn-sm eliminar-fila" onclick="eliminarFilaOcupabilidad(this)">
+                <i class="fa fa-trash"></i>
+            </button>
+        </td>
+    `;
+    tbody.appendChild(nuevaFila);
 }
 
 window.agregarFilaOcupabilidad = function() {
@@ -419,17 +624,17 @@ window.agregarFilaOcupabilidad = function() {
     nuevaFila.setAttribute('data-tipo', '');
     
     nuevaFila.innerHTML = `
-        71
+        <td>
             <input type="text" class="form-control tipo-posicion" placeholder="Ej: Posiciones especiales" value="">
-        </div>
-        71
+        </td>
+        <td>
             <input type="number" class="form-control cantidad-posicion" value="" placeholder="Ingrese cantidad" min="0" onchange="actualizarTotalOcupabilidad()">
-        </div>
+        </td>
         <td class="text-center">
             <button class="btn btn-danger btn-sm eliminar-fila" onclick="eliminarFilaOcupabilidad(this)">
                 <i class="fa fa-trash"></i>
             </button>
-        </div>
+        </td>
     `;
     tbody.appendChild(nuevaFila);
     
@@ -525,20 +730,7 @@ window.guardarOcupabilidad = function() {
         
         Swal.fire('Éxito', `Se guardaron ${datos.length} tipos de posición`, 'success');
         marcarModuloCompletado('ocupabilidad');
-        
-        const dataExtracted = document.getElementById('data-ocupabilidad');
-        if (dataExtracted) {
-            dataExtracted.style.display = 'block';
-            document.getElementById('ocupabilidad-total').textContent = datos.reduce((sum, d) => sum + d.cantidad, 0);
-            document.getElementById('ocupabilidad-racks').textContent = datos.length;
-            
-            let resumen = '';
-            datos.forEach(d => {
-                resumen += `${d.tipo}: ${d.cantidad}\n`;
-            });
-            document.getElementById('ocupabilidad-nivel').textContent = resumen.substring(0, 50) + (resumen.length > 50 ? '...' : '');
-        }
-        
+        mostrarDatosOcupabilidad(datos);
         $('#modalOcupabilidad').modal('hide');
     })
     .catch(error => {
@@ -547,13 +739,11 @@ window.guardarOcupabilidad = function() {
 };
 
 // ============================================
-// FUNCIONES PARA SERVICIOS (CORREGIDAS)
+// FUNCIONES PARA SERVICIOS
 // ============================================
 
-// Variables para servicios
 let serviciosData = [];
 
-// Cargar tarifas de servicios desde el servidor
 function cargarTarifasServicios() {
     return fetch('../../Controller/fa_get_tarifas_servicios.php?id_cliente=1')
         .then(res => res.json())
@@ -572,7 +762,6 @@ function cargarTarifasServicios() {
         });
 }
 
-// Abrir modal de servicios
 window.abrirModalServicios = async function() {
     console.log('abrirModalServicios llamado');
     
@@ -582,7 +771,6 @@ window.abrirModalServicios = async function() {
     
     construirTablaServicios();
     
-    // Cargar datos guardados si existen
     if (datosProcesados.servicios && datosProcesados.servicios.datos) {
         cargarDatosServicios(datosProcesados.servicios.datos);
     }
@@ -590,7 +778,6 @@ window.abrirModalServicios = async function() {
     $('#modalServicios').modal('show');
 };
 
-// Construir tabla de servicios con los servicios predefinidos
 function construirTablaServicios() {
     const tbody = document.getElementById('servicios-body');
     if (!tbody) return;
@@ -629,24 +816,22 @@ function construirTablaServicios() {
             <td class="servicio-nombre-cell">
                 <strong>${escapeHtml(servicio)}</strong>
                 <input type="hidden" class="servicio-nombre" value="${escapeHtml(servicio)}">
-            </td>
-            <td class="text-center tarifa-valor">${tarifa.toFixed(3)}</td>
+             </div>
+            <td class="text-center tarifa-valor">${tarifa.toFixed(3)}</div>
             <td class="text-center">
                 <input type="number" class="form-control form-control-sm cantidad-servicio" value="0" min="0" step="0.01" placeholder="0" style="width: 100%; text-align: center;" onchange="calcularTotalServicio(this)">
-            </td>
-            <td class="text-center total-servicio">0.00</td>
+             </div>
+            <td class="text-center total-servicio">0.00</div>
         `;
         tbody.appendChild(fila);
     });
 }
 
-// Cargar datos guardados en el modal
 function cargarDatosServicios(datos) {
     if (!datos || !datos.length) return;
     
     const filas = document.querySelectorAll('#servicios-body .fila-servicio');
     
-    // Resetear todas las cantidades a 0
     filas.forEach(fila => {
         const cantidadInput = fila.querySelector('.cantidad-servicio');
         if (cantidadInput) {
@@ -655,23 +840,19 @@ function cargarDatosServicios(datos) {
         }
     });
     
-    // Cargar los datos guardados
     datos.forEach(item => {
-        // Buscar si es un servicio predefinido
         let fila = Array.from(filas).find(f => {
             const hiddenInput = f.querySelector('.servicio-nombre');
             return hiddenInput && hiddenInput.value === item.servicio;
         });
         
         if (fila) {
-            // Servicio predefinido - actualizar cantidad
             const cantidadInput = fila.querySelector('.cantidad-servicio');
             if (cantidadInput) {
                 cantidadInput.value = item.cantidad;
                 calcularTotalServicio(cantidadInput);
             }
         } else {
-            // Servicio personalizado - agregar fila
             agregarServicioPersonalizado(item.servicio, item.tarifa, item.cantidad);
         }
     });
@@ -679,7 +860,6 @@ function cargarDatosServicios(datos) {
     actualizarTotalGeneralServicios();
 }
 
-// Calcular total de un servicio individual
 window.calcularTotalServicio = function(input) {
     const fila = input.closest('tr');
     const tarifaElement = fila.querySelector('.tarifa-valor');
@@ -703,7 +883,6 @@ window.calcularTotalServicio = function(input) {
     actualizarTotalGeneralServicios();
 };
 
-// Actualizar el total general de todos los servicios
 function actualizarTotalGeneralServicios() {
     let totalGeneral = 0;
     const filas = document.querySelectorAll('#servicios-body .fila-servicio');
@@ -721,7 +900,6 @@ function actualizarTotalGeneralServicios() {
     }
 }
 
-// Agregar servicio personalizado
 window.agregarServicioPersonalizado = function(servicioNombre = '', tarifaValor = 0, cantidadValor = 0) {
     const tbody = document.getElementById('servicios-body');
     if (!tbody) return;
@@ -743,26 +921,25 @@ window.agregarServicioPersonalizado = function(servicioNombre = '', tarifaValor 
     nuevaFila.setAttribute('data-tarifa', tarifaValor);
     
     nuevaFila.innerHTML = `
-        <td>
+        71
             <input type="text" class="form-control form-control-sm servicio-nombre" value="${escapeHtml(servicioNombre)}" placeholder="Nombre del servicio" style="width: 100%;" onchange="actualizarNombreServicio(this)">
-        </td>
+         </div>
         <td class="text-center">
             <input type="number" class="form-control form-control-sm tarifa-servicio" value="${tarifaValor}" step="0.001" min="0" style="width: 100%; text-align: center;" onchange="actualizarTarifaServicio(this)">
-        </td>
+         </div>
         <td class="text-center">
             <input type="number" class="form-control form-control-sm cantidad-servicio" value="${cantidadValor}" min="0" step="0.01" placeholder="0" style="width: 100%; text-align: center;" onchange="calcularTotalServicio(this)">
-        </td>
-        <td class="text-center total-servicio">${(tarifaValor * cantidadValor).toFixed(2)}</td>
+         </div>
+        <td class="text-center total-servicio">${(tarifaValor * cantidadValor).toFixed(2)}</div>
         <td class="text-center" style="width: 35px;">
             <button class="btn btn-danger btn-sm" onclick="eliminarServicioPersonalizado(this)" style="padding: 2px 6px;">
                 <i class="fa fa-trash"></i>
             </button>
-        </td>
+         </div>
     `;
     
     tbody.appendChild(nuevaFila);
     
-    // Vincular eventos explícitamente
     const cantidadInput = nuevaFila.querySelector('.cantidad-servicio');
     const tarifaInputNueva = nuevaFila.querySelector('.tarifa-servicio');
     
@@ -779,13 +956,11 @@ window.agregarServicioPersonalizado = function(servicioNombre = '', tarifaValor 
     actualizarTotalGeneralServicios();
 };
 
-// Actualizar nombre de servicio personalizado
 window.actualizarNombreServicio = function(input) {
     const fila = input.closest('tr');
     fila.setAttribute('data-servicio', input.value);
 };
 
-// Actualizar tarifa de servicio personalizado
 window.actualizarTarifaServicio = function(input) {
     const fila = input.closest('tr');
     const tarifa = parseFloat(input.value) || 0;
@@ -801,14 +976,12 @@ window.actualizarTarifaServicio = function(input) {
     }
 };
 
-// Eliminar servicio personalizado
 window.eliminarServicioPersonalizado = function(btn) {
     const fila = btn.closest('tr');
     const nombreInput = fila.querySelector('.servicio-nombre');
     const servicioNombre = nombreInput ? nombreInput.value : '';
     
     if (servicioNombre && serviciosData.some(s => s.servicio === servicioNombre)) {
-        // Es un servicio predefinido, solo resetear cantidad
         const cantidadInput = fila.querySelector('.cantidad-servicio');
         if (cantidadInput) {
             cantidadInput.value = 0;
@@ -816,13 +989,11 @@ window.eliminarServicioPersonalizado = function(btn) {
         }
         Swal.fire('Información', 'Los servicios predefinidos no se pueden eliminar, solo se puede resetear la cantidad', 'info');
     } else {
-        // Es un servicio personalizado, eliminar fila
         fila.remove();
         actualizarTotalGeneralServicios();
     }
 };
 
-// Guardar datos de servicios (SOLO LOS QUE TIENEN CANTIDAD > 0)
 window.guardarServicios = function() {
     const filas = document.querySelectorAll('#servicios-body .fila-servicio');
     const datos = [];
@@ -845,7 +1016,6 @@ window.guardarServicios = function() {
         const cantidadInput = fila.querySelector('.cantidad-servicio');
         const cantidad = cantidadInput ? parseFloat(cantidadInput.value) || 0 : 0;
         
-        // SOLO GUARDAR SI LA CANTIDAD ES MAYOR A 0
         if (cantidad > 0) {
             datos.push({
                 servicio: nombre,
@@ -887,24 +1057,14 @@ window.guardarServicios = function() {
         };
         
         Swal.fire('Éxito', `Se guardaron ${data.registros_guardados} servicios por un total de Bs ${data.total_general.toFixed(2)}`, 'success');
-        
         marcarModuloCompletado('servicios');
-        
-        const dataExtracted = document.getElementById('data-servicios');
-        if (dataExtracted) {
-            dataExtracted.style.display = 'block';
-            document.getElementById('servicios-total').textContent = datos.length;
-            document.getElementById('servicios-monto').textContent = 'Bs ' + data.total_general.toFixed(2);
-        }
-        
+        mostrarDatosServicios(datosProcesados.servicios);
         $('#modalServicios').modal('hide');
     })
     .catch(error => {
         Swal.fire('Error', error.message, 'error');
     });
 };
-
-
 
 // ============================================
 // FUNCIÓN AUXILIAR
@@ -925,6 +1085,31 @@ function escapeHtml(text) {
 // ============================================
 
 window.guardarRegistro = function() {
+    // Validar campos requeridos
+    const sede = document.getElementById('sede_registro')?.value;
+    const fechaInicio = document.getElementById('fecha_inicio')?.value;
+    const fechaFin = document.getElementById('fecha_fin')?.value;
+    
+    if (!sede) {
+        Swal.fire('Advertencia', 'Debe seleccionar una sede', 'warning');
+        return;
+    }
+    
+    if (!fechaInicio) {
+        Swal.fire('Advertencia', 'Debe seleccionar la fecha de inicio del período', 'warning');
+        return;
+    }
+    
+    if (!fechaFin) {
+        Swal.fire('Advertencia', 'Debe seleccionar la fecha de fin del período', 'warning');
+        return;
+    }
+    
+    if (fechaInicio > fechaFin) {
+        Swal.fire('Advertencia', 'La fecha de inicio no puede ser mayor que la fecha de fin', 'warning');
+        return;
+    }
+    
     if (!datosProcesados.recepcion && !datosProcesados.despacho && !datosProcesados.ocupabilidad && !datosProcesados.servicios) {
         Swal.fire('Advertencia', 'Debe completar al menos un módulo', 'warning');
         return;
@@ -936,7 +1121,10 @@ window.guardarRegistro = function() {
         despacho: datosProcesados.despacho ? 1 : 0,
         ocupabilidad: datosProcesados.ocupabilidad ? 1 : 0,
         servicios: datosProcesados.servicios ? 1 : 0,
-        estado: 'EN_PROCESO'
+        estado: 'EN_PROCESO',
+        sede: sede,
+        fecha_inicio: fechaInicio,
+        fecha_fin: fechaFin
     };
     
     Swal.fire({ title: 'Guardando...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
@@ -949,7 +1137,7 @@ window.guardarRegistro = function() {
     .then(res => res.json())
     .then(data => {
         if (data.success) {
-            Swal.fire('Éxito', 'Registro guardado', 'success').then(() => window.location.href = 'fa_main_arcor.php');
+            Swal.fire('Éxito', 'Registro guardado correctamente', 'success').then(() => window.location.href = 'fa_main_arcor.php');
         } else {
             throw new Error(data.error);
         }

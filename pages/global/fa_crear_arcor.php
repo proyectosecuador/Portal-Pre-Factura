@@ -45,6 +45,11 @@ $modulos_estado = [
     'servicios' => false
 ];
 
+// Variables para sede y fechas
+$sede_actual = '';
+$fecha_inicio_actual = '';
+$fecha_fin_actual = '';
+
 if ($registro_id > 0) {
     $sql_registro = "SELECT * FROM FacBol.fa_main WHERE id = ? AND id_cliente = ?";
     $stmt_registro = sqlsrv_query($conn, $sql_registro, array($registro_id, $ID_CLIENTE_FIJO));
@@ -55,6 +60,40 @@ if ($registro_id > 0) {
             $modulos_estado['despacho'] = $registro_data['despacho'] == 1;
             $modulos_estado['ocupabilidad'] = $registro_data['ocupabilidad'] == 1;
             $modulos_estado['servicios'] = $registro_data['servicios'] == 1;
+            
+            // Obtener sede
+            $sede_actual = isset($registro_data['sede']) ? $registro_data['sede'] : '';
+            
+            // ============================================
+            // CORRECCIÓN: Manejar fechas como objetos DateTime
+            // ============================================
+            // Fecha1 (fecha inicio)
+            if (isset($registro_data['fecha1']) && !empty($registro_data['fecha1'])) {
+                if ($registro_data['fecha1'] instanceof DateTime) {
+                    $fecha_inicio_actual = $registro_data['fecha1']->format('Y-m-d');
+                } else if (is_string($registro_data['fecha1'])) {
+                    $timestamp = strtotime($registro_data['fecha1']);
+                    $fecha_inicio_actual = $timestamp ? date('Y-m-d', $timestamp) : '';
+                } else {
+                    $fecha_inicio_actual = '';
+                }
+            } else {
+                $fecha_inicio_actual = '';
+            }
+            
+            // Fecha2 (fecha fin)
+            if (isset($registro_data['fecha2']) && !empty($registro_data['fecha2'])) {
+                if ($registro_data['fecha2'] instanceof DateTime) {
+                    $fecha_fin_actual = $registro_data['fecha2']->format('Y-m-d');
+                } else if (is_string($registro_data['fecha2'])) {
+                    $timestamp = strtotime($registro_data['fecha2']);
+                    $fecha_fin_actual = $timestamp ? date('Y-m-d', $timestamp) : '';
+                } else {
+                    $fecha_fin_actual = '';
+                }
+            } else {
+                $fecha_fin_actual = '';
+            }
         }
         sqlsrv_free_stmt($stmt_registro);
     }
@@ -85,13 +124,17 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         ocupabilidad: <?php echo $modulos_estado['ocupabilidad'] ? 'true' : 'false'; ?>,
         servicios: <?php echo $modulos_estado['servicios'] ? 'true' : 'false'; ?>
     };
+    window.sedeActual = '<?php echo addslashes($sede_actual); ?>';
+    window.fechaInicioActual = '<?php echo $fecha_inicio_actual; ?>';
+    window.fechaFinActual = '<?php echo $fecha_fin_actual; ?>';
     console.log('✅ PHP Variables - registroId:', window.registroId);
     console.log('✅ PHP Variables - moduloActivo:', window.moduloActivo);
+    console.log('✅ PHP Variables - sedeActual:', window.sedeActual);
+    console.log('✅ PHP Variables - fechaInicioActual:', window.fechaInicioActual);
+    console.log('✅ PHP Variables - fechaFinActual:', window.fechaFinActual);
 </script>
 
-<!-- ESTILOS COMPLETOS (igual que antes, omitido por brevedad) -->
 <style>
-    /* ... mismos estilos que en tu archivo ... */
     :root {
         --primary-color: #009a3f;
         --primary-dark: #007a32;
@@ -156,6 +199,11 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         text-decoration: none;
     }
     
+    .btn-volver:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-2px);
+    }
+    
     .progress-section {
         background: white;
         border-radius: 15px;
@@ -186,6 +234,67 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         transition: width 0.3s ease;
     }
     
+    /* Sección de información del período */
+    .periodo-section {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .periodo-section h5 {
+        margin: 0 0 15px 0;
+        color: #333;
+        font-weight: 600;
+        border-left: 4px solid var(--primary-color);
+        padding-left: 12px;
+    }
+    
+    .periodo-section .row {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .periodo-section .col-md-4 {
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .periodo-section label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+        font-size: 13px;
+    }
+    
+    .periodo-section .form-control {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+    
+    .periodo-section .form-control:focus {
+        border-color: var(--primary-color);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0,154,63,0.1);
+    }
+    
+    .periodo-section .alert-info {
+        background: #e8f5e9;
+        border-left: 4px solid var(--primary-color);
+        padding: 10px 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        font-size: 12px;
+        color: #2c3e50;
+    }
+    
     .modulos-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -196,6 +305,10 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
     @media (max-width: 768px) {
         .modulos-grid {
             grid-template-columns: 1fr;
+        }
+        .periodo-section .row {
+            flex-direction: column;
+            gap: 15px;
         }
     }
     
@@ -381,6 +494,7 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         gap: 15px;
         position: sticky;
         bottom: 20px;
+        z-index: 100;
     }
     
     .btn-guardar {
@@ -397,6 +511,11 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         transition: all 0.3s ease;
     }
     
+    .btn-guardar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,154,63,0.3);
+    }
+    
     .btn-cancelar {
         background: white;
         color: #666;
@@ -405,6 +524,12 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         border-radius: 50px;
         font-weight: 500;
         text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-cancelar:hover {
+        background: #f5f5f5;
+        border-color: #ccc;
     }
     
     .preview-table {
@@ -468,6 +593,11 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         margin-right: 5px;
     }
     
+    .btn-range:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+    
     .filter-info {
         margin-top: 10px;
         font-size: 12px;
@@ -507,8 +637,27 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         border: 1px solid #c3e6cb;
     }
     
+    .alert-info {
+        background: #d1ecf1;
+        color: #0c5460;
+        border: 1px solid #bee5eb;
+    }
+    
     .text-center {
         text-align: center;
+    }
+    
+    .text-danger {
+        color: #dc3545;
+    }
+    
+    .sede-info {
+        background: #e8f5e9;
+        border-left: 4px solid var(--primary-color);
+        padding: 8px 12px;
+        border-radius: 6px;
+        margin-top: 10px;
+        font-size: 12px;
     }
 </style>
 
@@ -545,6 +694,38 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         </div>
         <div class="progress-bar-custom">
             <div class="progress-fill" id="progressFill" style="width: <?php echo $porcentaje; ?>%;"></div>
+        </div>
+    </div>
+    
+    <!-- ============================================ -->
+    <!-- SECCIÓN DE INFORMACIÓN DEL PERÍODO -->
+    <!-- ============================================ -->
+    <div class="periodo-section">
+        <h5><i class="fa fa-info-circle"></i> Información del Período</h5>
+        <div class="row">
+            <div class="col-md-4">
+                <label for="sede_registro">Sede <span class="text-danger">*</span></label>
+                <select id="sede_registro" class="form-control" required>
+                    <option value="">Seleccione una sede</option>
+                    <option value="Toborochi">Toborochi</option>
+                    <option value="Illimani">Illimani</option>
+                    <option value="Tunari">Tunari</option>
+                    <option value="Illampu">Illampu</option>
+                    <option value="Quito">Quito</option>
+                    <option value="Guayaquil">Guayaquil</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="fecha_inicio">Fecha Inicio del Período <span class="text-danger">*</span></label>
+                <input type="date" id="fecha_inicio" class="form-control" required value="<?php echo $fecha_inicio_actual; ?>">
+            </div>
+            <div class="col-md-4">
+                <label for="fecha_fin">Fecha Fin del Período <span class="text-danger">*</span></label>
+                <input type="date" id="fecha_fin" class="form-control" required value="<?php echo $fecha_fin_actual; ?>">
+            </div>
+        </div>
+        <div class="alert alert-info">
+            <i class="fa fa-info-circle"></i> Las fechas de inicio y fin definirán el período de la factura. La sede se puede seleccionar manualmente o se detectará automáticamente al procesar el archivo de despacho.
         </div>
     </div>
     
@@ -807,7 +988,6 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
                             </tr>
                         </thead>
                         <tbody id="ocupabilidad-body">
-                            <!-- Fila 1: Posiciones rack (por defecto) -->
                             <tr class="fila-ocupabilidad" data-tipo="Posiciones rack">
                                 <td>
                                     <input type="text" class="form-control tipo-posicion" value="Posiciones rack" readonly style="background: #f5f5f5;">
@@ -821,19 +1001,18 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
                                     </button>
                                 </td>
                             </tr>
-                            <!-- Fila 2: Posiciones rack (pallet adicional) por defecto -->
                             <tr class="fila-ocupabilidad" data-tipo="Posiciones rack (pallet adicional)">
                                 <td>
                                     <input type="text" class="form-control tipo-posicion" value="Posiciones rack (pallet adicional)" readonly style="background: #f5f5f5;">
                                 </td>
                                 <td>
                                     <input type="number" class="form-control cantidad-posicion" value="" placeholder="Ingrese cantidad" min="0" onchange="actualizarTotalOcupabilidad()">
-                                </div>
+                                </td>
                                 <td class="text-center">
                                     <button class="btn btn-danger btn-sm eliminar-fila" style="display: none;" disabled>
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                </div>
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -860,6 +1039,7 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
         </div>
     </div>
 </div>
+
 <!-- MODAL DE OTROS SERVICIOS -->
 <div class="modal fade" id="modalServicios" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document" style="max-width: 900px;">
@@ -878,21 +1058,22 @@ $titulo_pagina = $registro_id > 0 ? "Editar Registro #{$registro_id}" : "Nuevo R
                 <div class="table-responsive" style="max-height: 450px; overflow-y: auto;">
                     <table class="table table-sm table-bordered table-hover" id="tabla-servicios" style="font-size: 13px;">
                         <thead style="position: sticky; top: 0; background: #f8f9fa; z-index: 10;">
-                            32
+                            <tr>
                                 <th width="45%">SERVICIO</th>
                                 <th width="20%" class="text-center">TARIFA (Bs)</th>
                                 <th width="20%" class="text-center">CANTIDAD</th>
                                 <th width="15%" class="text-center">TOTAL (Bs)</th>
-                            </thead>
+                            </tr>
+                        </thead>
                         <tbody id="servicios-body">
                             <!-- Los servicios se cargarán dinámicamente -->
                         </tbody>
                         <tfoot>
                             <tr style="background: #e8f5e9; font-weight: bold;">
-                                <td class="text-right"><strong>TOTAL GENERAL</strong>  </div>
-                                <td class="text-center">-  </div>
-                                <td class="text-center">-  </div>
-                                <td class="text-center"><strong id="total-general-servicios">0.00</strong> Bs  </div>
+                                <td class="text-right"><strong>TOTAL GENERAL</strong></td>
+                                <td class="text-center">-</td>
+                                <td class="text-center">-</td>
+                                <td class="text-center"><strong id="total-general-servicios">0.00</strong> Bs</td>
                             </tr>
                         </tfoot>
                     </table>

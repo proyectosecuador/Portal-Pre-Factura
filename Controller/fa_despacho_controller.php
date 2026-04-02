@@ -2,6 +2,7 @@
 /**
  * fa_despacho_controller.php
  * Controlador que llama a la API Python para procesar archivos de despacho
+ * MODIFICADO: Soporte para extraer sede desde hoja Data
  */
 
 session_start();
@@ -82,5 +83,18 @@ if (!$resultado) {
     enviarRespuesta(false, [], 'Respuesta inválida de Python API');
 }
 
-echo $response;
+// ============================================
+// NUEVO: Si la respuesta contiene sede, agregarla
+// ============================================
+if ($resultado['success']) {
+    // Asegurar que sede esté presente en la respuesta
+    if (!isset($resultado['sede']) && isset($resultado['stats']['sede'])) {
+        $resultado['sede'] = $resultado['stats']['sede'];
+    }
+    if (!isset($resultado['whseid']) && isset($resultado['metadata']['whseid'])) {
+        $resultado['whseid'] = $resultado['metadata']['whseid'];
+    }
+}
+
+echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
 ?>

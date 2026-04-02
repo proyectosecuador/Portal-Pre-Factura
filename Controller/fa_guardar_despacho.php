@@ -2,6 +2,7 @@
 /**
  * fa_guardar_despacho.php
  * Controlador para guardar los datos procesados de despacho
+ * MODIFICADO: Guarda también la sede detectada en fa_main
  */
 
 session_start();
@@ -77,12 +78,16 @@ class GuardadoDespacho {
             $factura_id = isset($input['id_factura']) ? intval($input['id_factura']) : 0;
             error_log("Debug: ID de factura recibido: $factura_id");
             
+            // Obtener la sede del input (NUEVO)
+            $sede = isset($input['sede']) && !empty($input['sede']) ? $input['sede'] : null;
+            error_log("Debug: Sede recibida: " . ($sede ?: 'No especificada'));
+            
             if ($factura_id <= 0) {
                 throw new Exception('ID de factura no válido: ' . $factura_id);
             }
             
             // VERIFICAR QUE LA FACTURA EXISTE ANTES DE CONTINUAR
-            $sql_check = "SELECT id, despacho FROM FacBol.fa_main WHERE id = ? AND id_cliente = 1";
+            $sql_check = "SELECT id, despacho, sede FROM FacBol.fa_main WHERE id = ? AND id_cliente = 1";
             $stmt_check = sqlsrv_query($this->conn, $sql_check, array($factura_id));
             
             if ($stmt_check === false) {
@@ -99,9 +104,27 @@ class GuardadoDespacho {
                 throw new Exception("La factura con ID $factura_id no existe en la base de datos");
             }
             
-            error_log("Debug: Factura encontrada - ID: {$factura_existente['id']}, Despacho actual: {$factura_existente['despacho']}");
+            error_log("Debug: Factura encontrada - ID: {$factura_existente['id']}, Despacho actual: {$factura_existente['despacho']}, Sede actual: {$factura_existente['sede']}");
             
-            // ACTUALIZAR LA FACTURA EXISTENTE (no crear nueva)
+            // ============================================
+            // NUEVO: ACTUALIZAR LA SEDE SI SE RECIBIÓ
+            // ============================================
+            if ($sede) {
+                $sql_update_sede = "UPDATE FacBol.fa_main SET sede = ? WHERE id = ? AND id_cliente = 1";
+                $stmt_update_sede = sqlsrv_query($this->conn, $sql_update_sede, array($sede, $factura_id));
+                
+                if ($stmt_update_sede === false) {
+                    $errors = sqlsrv_errors();
+                    $error_msg = $errors ? $errors[0]['message'] : 'Error desconocido';
+                    error_log("❌ Error al actualizar sede: " . $error_msg);
+                    // No lanzamos excepción, continuamos con el guardado
+                } else {
+                    sqlsrv_free_stmt($stmt_update_sede);
+                    error_log("✅ Sede '$sede' guardada correctamente para factura ID: $factura_id");
+                }
+            }
+            
+            // ACTUALIZAR LA FACTURA EXISTENTE (despacho = 1)
             $fecha_desde = isset($input['fecha_desde']) && !empty($input['fecha_desde']) ? $input['fecha_desde'] : null;
             $fecha_hasta = isset($input['fecha_hasta']) && !empty($input['fecha_hasta']) ? $input['fecha_hasta'] : null;
             
@@ -134,7 +157,8 @@ class GuardadoDespacho {
                 'factura_id' => $factura_id,
                 'registros_guardados' => $insertados,
                 'tiempo_segundos' => $tiempo,
-                'mensaje' => "✅ Se guardaron $insertados registros de despacho en {$tiempo} segundos"
+                'sede_guardada' => $sede,
+                'mensaje' => "✅ Se guardaron $insertados registros de despacho en {$tiempo} segundos" . ($sede ? " Sede: $sede" : "")
             ];
             
         } catch (Exception $e) {
@@ -281,6 +305,7 @@ try {
     $input = json_decode(file_get_contents('php://input'), true);
     error_log("Debug: Input recibido en guardar_despacho - id_factura: " . ($input['id_factura'] ?? 'NULL'));
     error_log("Debug: total datos despacho: " . count($input['datos_despacho'] ?? []));
+    error_log("Debug: sede recibida: " . ($input['sede'] ?? 'NULL'));
     
     $guardado = new GuardadoDespacho();
     $resultado = $guardado->ejecutar($input);

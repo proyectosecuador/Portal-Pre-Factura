@@ -1,6 +1,7 @@
 /**
  * fa_main_arcor.js
  * JavaScript para la gestión de la tabla fa_main para Arcor
+ * Versión con visualización de observaciones en estados OBSERVADO y OBSERVACION_CLIENTE
  */
 
 let datosRegistros = [];
@@ -8,6 +9,11 @@ let cargando = false;
 
 function formatearFecha(fechaStr) {
     if (!fechaStr || fechaStr === '') return '-';
+    // Si ya viene formateada como dd/mm/yyyy del SQL
+    if (typeof fechaStr === 'string' && fechaStr.match(/^\d{2}\/\d{2}\/\d{4}/)) {
+        return fechaStr;
+    }
+    // Si viene como YYYY-MM-DD
     if (typeof fechaStr === 'string' && fechaStr.match(/^\d{4}-\d{2}-\d{2}/)) {
         const [year, month, day] = fechaStr.split('-');
         return `${day}/${month}/${year}`;
@@ -54,7 +60,7 @@ function cargarTabla() {
     let estado = $('#filtro_estado').val();
     let tbody = $('#tablaBody');
     
-    tbody.html('<tr><td colspan="10" class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><p>Cargando datos...</p></td></tr>');
+    tbody.html('<tr><td colspan="11" class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><p>Cargando datos...</p></td></tr>');
     
     $.ajax({
         url: '../../Controller/fa_main_arcor_controller.php',
@@ -77,13 +83,13 @@ function cargarTabla() {
                 
                 renderizarTabla(dataFiltrada);
             } else {
-                tbody.html('<tr><td colspan="10" class="text-center"><div class="empty-message"><i class="fa fa-exclamation-triangle text-danger"></i><p>Error al cargar datos</p></div></td></tr>');
+                tbody.html('<tr><td colspan="11" class="text-center"><div class="empty-message"><i class="fa fa-exclamation-triangle text-danger"></i><p>Error al cargar datos</p></div></td></tr>');
             }
         },
         error: function(xhr, status, error) {
             cargando = false;
             console.error('Error:', error);
-            tbody.html('<tr><td colspan="10" class="text-center"><div class="empty-message"><i class="fa fa-exclamation-triangle text-danger"></i><p>Error de conexión: ' + error + '</p></div></td></tr>');
+            tbody.html('<tr><td colspan="11" class="text-center"><div class="empty-message"><i class="fa fa-exclamation-triangle text-danger"></i><p>Error de conexión: ' + error + '</p></div></td></tr>');
         }
     });
 }
@@ -93,7 +99,7 @@ function renderizarTabla(data) {
     tbody.empty();
     
     if (!data || data.length === 0) {
-        tbody.html('<tr><td colspan="10" class="text-center"><div class="empty-message"><i class="fa fa-inbox"></i><p>No hay registros disponibles</p><small>Haga clic en "Nuevo Registro" para agregar uno</small></div></td></tr>');
+        tbody.html('<tr><td colspan="11" class="text-center"><div class="empty-message"><i class="fa fa-inbox"></i><p>No hay registros disponibles</p><small>Haga clic en "Nuevo Registro" para agregar uno</small></div></td></tr>');
         return;
     }
     
@@ -107,22 +113,42 @@ function renderizarTabla(data) {
         let modulosCompletados = (completados == 4);
         let estadoEsVerificado = (row.estado === 'VERIFICADO');
         
+        // ============================================
+        // ESTADO HTML CON CLICK PARA MOSTRAR OBSERVACIÓN
+        // ============================================
         let estadoClass = `estado-${row.estado}`;
-        let estadoHtml = `<span class="estado-badge ${estadoClass}">${row.estado}</span>`;
+        let estadoHtml = '';
+        
+        // Verificar si el estado es OBSERVADO y tiene observacion_aprobador
+        if (row.estado === 'OBSERVADO' && row.observacion_aprobador && row.observacion_aprobador.trim() !== '') {
+            estadoHtml = `<span class="estado-badge ${estadoClass}" style="cursor: pointer;" onclick="mostrarObservacion('${escapeHtml(row.observacion_aprobador)}', ${row.id}, 'Observación del Aprobador')">
+                            <i class="fa fa-comment"></i> ${row.estado}
+                          </span>`;
+        }
+        // Verificar si el estado es OBSERVACION_CLIENTE y tiene observacion_cliente
+        else if (row.estado === 'OBSERVACION_CLIENTE' && row.observacion_cliente && row.observacion_cliente.trim() !== '') {
+            estadoHtml = `<span class="estado-badge ${estadoClass}" style="cursor: pointer;" onclick="mostrarObservacion('${escapeHtml(row.observacion_cliente)}', ${row.id}, 'Observación del Cliente')">
+                            <i class="fa fa-comment"></i> ${row.estado}
+                          </span>`;
+        }
+        // Si no hay observación, mostrar solo el estado sin click
+        else {
+            estadoHtml = `<span class="estado-badge ${estadoClass}">${row.estado}</span>`;
+        }
         
         // ============================================
-        // RECEPCIÓN
+        // RECEPCIÓN - Botones con nuevo diseño
         // ============================================
         let recepcionHtml = '';
         if (row.recepcion == 1) {
             recepcionHtml = `
                 <div class="modulo-buttons">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('recepcion', ${row.id})" title="Generar PDF">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('recepcion', ${row.id})" title="Generar PDF">
                         <i class="fa fa-file-pdf-o"></i> PDF
                     </button>
-                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-actualizar" onclick="editarModulo(${row.id}, 'recepcion')" title="Actualizar">
+                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-update-module" onclick="editarModulo(${row.id}, 'recepcion')" title="Actualizar">
                         <i class="fa fa-refresh"></i> Actualizar
-                    </button>` : `<button class="btn-modulo btn-actualizar disabled" disabled title="No disponible en estado VERIFICADO">
+                    </button>` : `<button class="btn-modulo btn-update-module disabled" disabled title="No disponible en estado VERIFICADO">
                         <i class="fa fa-refresh"></i> Actualizar
                     </button>`}
                 </div>
@@ -131,9 +157,9 @@ function renderizarTabla(data) {
             recepcionHtml = `
                 <div class="modulo-buttons">
                     <span class="modulo-pendiente-text">Pendiente</span>
-                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-editar-modulo" onclick="editarModulo(${row.id}, 'recepcion')" title="Editar">
+                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-edit-module" onclick="editarModulo(${row.id}, 'recepcion')" title="Editar">
                         <i class="fa fa-pencil"></i>
-                    </button>` : `<button class="btn-modulo btn-editar-modulo disabled" disabled title="No disponible en estado VERIFICADO">
+                    </button>` : `<button class="btn-modulo btn-edit-module disabled" disabled title="No disponible en estado VERIFICADO">
                         <i class="fa fa-pencil"></i>
                     </button>`}
                 </div>
@@ -147,12 +173,12 @@ function renderizarTabla(data) {
         if (row.despacho == 1) {
             despachoHtml = `
                 <div class="modulo-buttons">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('despacho', ${row.id})" title="Generar PDF">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('despacho', ${row.id})" title="Generar PDF">
                         <i class="fa fa-file-pdf-o"></i> PDF
                     </button>
-                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-actualizar" onclick="editarModulo(${row.id}, 'despacho')" title="Actualizar">
+                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-update-module" onclick="editarModulo(${row.id}, 'despacho')" title="Actualizar">
                         <i class="fa fa-refresh"></i> Actualizar
-                    </button>` : `<button class="btn-modulo btn-actualizar disabled" disabled title="No disponible en estado VERIFICADO">
+                    </button>` : `<button class="btn-modulo btn-update-module disabled" disabled title="No disponible en estado VERIFICADO">
                         <i class="fa fa-refresh"></i> Actualizar
                     </button>`}
                 </div>
@@ -161,9 +187,9 @@ function renderizarTabla(data) {
             despachoHtml = `
                 <div class="modulo-buttons">
                     <span class="modulo-pendiente-text">Pendiente</span>
-                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-editar-modulo" onclick="editarModulo(${row.id}, 'despacho')" title="Editar">
+                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-edit-module" onclick="editarModulo(${row.id}, 'despacho')" title="Editar">
                         <i class="fa fa-pencil"></i>
-                    </button>` : `<button class="btn-modulo btn-editar-modulo disabled" disabled title="No disponible en estado VERIFICADO">
+                    </button>` : `<button class="btn-modulo btn-edit-module disabled" disabled title="No disponible en estado VERIFICADO">
                         <i class="fa fa-pencil"></i>
                     </button>`}
                 </div>
@@ -177,12 +203,12 @@ function renderizarTabla(data) {
         if (row.ocupabilidad == 1) {
             ocupabilidadHtml = `
                 <div class="modulo-buttons">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('ocupabilidad', ${row.id})" title="Generar PDF">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('ocupabilidad', ${row.id})" title="Generar PDF">
                         <i class="fa fa-file-pdf-o"></i> PDF
                     </button>
-                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-actualizar" onclick="editarModulo(${row.id}, 'ocupabilidad')" title="Actualizar">
+                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-update-module" onclick="editarModulo(${row.id}, 'ocupabilidad')" title="Actualizar">
                         <i class="fa fa-refresh"></i> Actualizar
-                    </button>` : `<button class="btn-modulo btn-actualizar disabled" disabled title="No disponible en estado VERIFICADO">
+                    </button>` : `<button class="btn-modulo btn-update-module disabled" disabled title="No disponible en estado VERIFICADO">
                         <i class="fa fa-refresh"></i> Actualizar
                     </button>`}
                 </div>
@@ -191,9 +217,9 @@ function renderizarTabla(data) {
             ocupabilidadHtml = `
                 <div class="modulo-buttons">
                     <span class="modulo-pendiente-text">Pendiente</span>
-                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-editar-modulo" onclick="editarModulo(${row.id}, 'ocupabilidad')" title="Editar">
+                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-edit-module" onclick="editarModulo(${row.id}, 'ocupabilidad')" title="Editar">
                         <i class="fa fa-pencil"></i>
-                    </button>` : `<button class="btn-modulo btn-editar-modulo disabled" disabled title="No disponible en estado VERIFICADO">
+                    </button>` : `<button class="btn-modulo btn-edit-module disabled" disabled title="No disponible en estado VERIFICADO">
                         <i class="fa fa-pencil"></i>
                     </button>`}
                 </div>
@@ -207,12 +233,12 @@ function renderizarTabla(data) {
         if (row.servicios == 1) {
             serviciosHtml = `
                 <div class="modulo-buttons">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('servicios', ${row.id})" title="Generar PDF">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('servicios', ${row.id})" title="Generar PDF">
                         <i class="fa fa-file-pdf-o"></i> PDF
                     </button>
-                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-actualizar" onclick="editarModulo(${row.id}, 'servicios')" title="Actualizar">
+                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-update-module" onclick="editarModulo(${row.id}, 'servicios')" title="Actualizar">
                         <i class="fa fa-refresh"></i> Actualizar
-                    </button>` : `<button class="btn-modulo btn-actualizar disabled" disabled title="No disponible en estado VERIFICADO">
+                    </button>` : `<button class="btn-modulo btn-update-module disabled" disabled title="No disponible en estado VERIFICADO">
                         <i class="fa fa-refresh"></i> Actualizar
                     </button>`}
                 </div>
@@ -221,9 +247,9 @@ function renderizarTabla(data) {
             serviciosHtml = `
                 <div class="modulo-buttons">
                     <span class="modulo-pendiente-text">Pendiente</span>
-                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-editar-modulo" onclick="editarModulo(${row.id}, 'servicios')" title="Editar">
+                    ${!estadoEsVerificado ? `<button class="btn-modulo btn-edit-module" onclick="editarModulo(${row.id}, 'servicios')" title="Editar">
                         <i class="fa fa-pencil"></i>
-                    </button>` : `<button class="btn-modulo btn-editar-modulo disabled" disabled title="No disponible en estado VERIFICADO">
+                    </button>` : `<button class="btn-modulo btn-edit-module disabled" disabled title="No disponible en estado VERIFICADO">
                         <i class="fa fa-pencil"></i>
                     </button>`}
                 </div>
@@ -231,23 +257,21 @@ function renderizarTabla(data) {
         }
         
         // ============================================
-        // RESUMEN
+        // RESUMEN - Sin badge de disponible
         // ============================================
         let resumenHtml = '';
         if (modulosCompletados) {
             resumenHtml = `
                 <div class="resumen-completo">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('resumen', ${row.id})" title="Generar PDF Completo">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('resumen', ${row.id})" title="Generar PDF Completo">
                         <i class="fa fa-file-pdf-o"></i> PDF Completo
                     </button>
-                    <span class="badge-verde">Disponible</span>
                 </div>
             `;
         } else {
             resumenHtml = `
                 <div class="resumen-incompleto">
-                    <span class="badge-gris">No disponible</span>
-                    <small>Faltan ${4 - completados} módulo(s)</small>
+                    <span class="badge-gris">Faltan ${4 - completados} módulo(s)</span>
                 </div>
             `;
         }
@@ -259,12 +283,17 @@ function renderizarTabla(data) {
         let fechaFinHtml = formatearFecha(row.fecha2);
         
         // ============================================
+        // SEDE
+        // ============================================
+        let sedeHtml = row.sede ? row.sede : '-';
+        
+        // ============================================
         // ACCIONES
         // ============================================
         let accionesHtml = '';
         
         // Botón de verificar - SOLO SI LOS 4 MÓDULOS ESTÁN COMPLETADOS Y ESTADO NO ES VERIFICADO
-        if (modulosCompletados && !estadoEsVerificado) {
+        if (modulosCompletados && !estadoEsVerificado && row.estado !== 'VERIFICADO') {
             accionesHtml += `
                 <button class="btn-accion btn-verificar" onclick="verificarFactura(${row.id})" title="Verificar factura">
                     <i class="fa fa-check-circle"></i> Verificar
@@ -276,12 +305,12 @@ function renderizarTabla(data) {
         if (row.estado === 'EN_PROCESO' && !estadoEsVerificado) {
             accionesHtml += `
                 <button class="btn-accion btn-eliminar" onclick="eliminarRegistro(${row.id})" title="Eliminar">
-                    <i class="fa fa-trash"></i>
+                    <i class="fa fa-trash"></i> Eliminar
                 </button>
             `;
         }
         
-        // Si no hay acciones, mostrar un mensage
+        // Si no hay acciones, mostrar un mensaje
         if (accionesHtml === '') {
             accionesHtml = `<span class="text-muted">-</span>`;
         }
@@ -297,11 +326,39 @@ function renderizarTabla(data) {
                 <td class="text-center">${resumenHtml}</td>
                 <td class="text-center">${fechaInicioHtml}</td>
                 <td class="text-center">${fechaFinHtml}</td>
+                <td class="text-center">${sedeHtml}</td>
                 <td class="text-center">${accionesHtml}</td>
             </tr>
         `;
         
         tbody.append(rowHtml);
+    });
+}
+
+// ============================================
+// FUNCIÓN PARA MOSTRAR OBSERVACIÓN
+// ============================================
+function mostrarObservacion(observacion, facturaId, titulo) {
+    console.log('Mostrando observación para factura ID:', facturaId);
+    console.log('Observación:', observacion);
+    
+    Swal.fire({
+        title: titulo,
+        html: `
+            <div style="text-align: left;">
+                <p><strong>Factura ID:</strong> ${facturaId}</p>
+                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 8px;">
+                    <strong><i class="fa fa-comment"></i> Motivo:</strong>
+                    <div style="margin-top: 10px; white-space: pre-wrap; word-wrap: break-word; max-height: 300px; overflow-y: auto;">
+                        ${escapeHtml(observacion)}
+                    </div>
+                </div>
+            </div>
+        `,
+        icon: 'warning',
+        confirmButtonText: 'Cerrar',
+        confirmButtonColor: '#009a3f',
+        width: '600px'
     });
 }
 
@@ -331,7 +388,6 @@ function generarPDF(tipo, id) {
             return;
     }
     
-    // Abrir en nueva ventana
     window.open(url, '_blank');
 }
 
@@ -343,7 +399,7 @@ function editarModulo(id, modulo) {
 }
 
 // ============================================
-// FUNCIONES DE ELIMINACIÓN
+// FUNCIÓN DE ELIMINACIÓN
 // ============================================
 function eliminarRegistro(id) {
     Swal.fire({
@@ -423,7 +479,7 @@ function verificarFactura(id) {
                 didOpen: () => Swal.showLoading()
             });
             
-            fetch('/Portal-Pre%20Factura/Controller/fa_verificar_factura.php', {
+            fetch('../../Controller/fa_verificar_factura.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -458,4 +514,18 @@ function verificarFactura(id) {
             });
         }
     });
+}
+
+// ============================================
+// FUNCIÓN PARA ESCAPAR HTML
+// ============================================
+function escapeHtml(text) {
+    if (!text) return '';
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+        .replace(/\n/g, "<br>");
 }

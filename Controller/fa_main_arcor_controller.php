@@ -1,27 +1,24 @@
 <?php
 /**
  * fa_main_arcor_controller.php
- * Controlador para las operaciones CRUD de fa_main para Arcor
+ * Controlador para la gestión de la tabla fa_main para Arcor
  */
 
 session_start();
+header('Content-Type: application/json');
 
-// Verificar sesión
 if (!isset($_SESSION["id_user"])) {
-    header('Content-Type: application/json');
     echo json_encode(['success' => false, 'error' => 'No autorizado']);
     exit;
 }
 
-// Incluir conexión y modelo
-include_once('../Conexion/conexion_mysqli.php');
-include_once('../Model/Model_fa_main_arcor.php');
+$conn_path = __DIR__ . '/../Conexion/conexion_mysqli.php';
+if (!file_exists($conn_path)) {
+    echo json_encode(['success' => false, 'error' => 'Archivo de conexión no encontrado']);
+    exit;
+}
 
-// Configurar respuesta JSON
-header('Content-Type: application/json');
-
-// Obtener la acción
-$action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
+include_once($conn_path);
 
 $conn = conexionSQL();
 
@@ -30,85 +27,128 @@ if (!$conn) {
     exit;
 }
 
-$model = new Model_fa_main_arcor($conn);
+$action = isset($_GET['action']) ? $_GET['action'] : '';
 
 switch ($action) {
     case 'list':
-        $data = $model->getAll();
+        // Obtener todos los registros para Arcor (id_cliente = 1)
+        $sql = "SELECT 
+                    id, 
+                    estado, 
+                    recepcion, 
+                    despacho, 
+                    ocupabilidad, 
+                    servicios,
+                    CONVERT(varchar(10), fecha1, 103) as fecha1,
+                    CONVERT(varchar(10), fecha2, 103) as fecha2,
+                    sede,
+                    observacion_cliente,
+                    observacion_aprobador
+                FROM FacBol.fa_main 
+                WHERE id_cliente = 1 
+                ORDER BY id DESC";
         
-        // Agregar resumen a cada registro
-        foreach ($data as &$row) {
-            $row['resumen'] = $model->getResumen($row);
+        $stmt = sqlsrv_query($conn, $sql);
+        
+        if ($stmt === false) {
+            $errors = sqlsrv_errors();
+            $error_msg = $errors ? $errors[0]['message'] : 'Error desconocido';
+            echo json_encode(['success' => false, 'error' => 'Error en consulta: ' . $error_msg]);
+            sqlsrv_close($conn);
+            exit;
         }
+        
+        $data = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $data[] = $row;
+        }
+        sqlsrv_free_stmt($stmt);
         
         echo json_encode(['success' => true, 'data' => $data]);
         break;
         
-    case 'get':
-        $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-        if ($id <= 0) {
-            echo json_encode(['success' => false, 'error' => 'ID inválido']);
-            break;
+    case 'get_stats':
+        // Total de registros
+        $sql_total = "SELECT COUNT(*) as total FROM FacBol.fa_main WHERE id_cliente = 1";
+        $stmt_total = sqlsrv_query($conn, $sql_total);
+        $total = 0;
+        if ($stmt_total) {
+            $row = sqlsrv_fetch_array($stmt_total, SQLSRV_FETCH_ASSOC);
+            $total = $row['total'] ?? 0;
+            sqlsrv_free_stmt($stmt_total);
         }
         
-        $data = $model->getById($id);
-        if ($data) {
-            echo json_encode(['success' => true, 'data' => $data]);
-        } else {
-            echo json_encode(['success' => false, 'error' => 'Registro no encontrado']);
-        }
-        break;
-        
-    case 'create':
-        $data = [
-            'estado' => isset($_POST['estado']) ? trim($_POST['estado']) : 'PENDIENTE',
-            'recepcion' => isset($_POST['recepcion']) ? intval($_POST['recepcion']) : 0,
-            'despacho' => isset($_POST['despacho']) ? intval($_POST['despacho']) : 0,
-            'ocupabilidad' => isset($_POST['ocupabilidad']) ? intval($_POST['ocupabilidad']) : 0,
-            'servicios' => isset($_POST['servicios']) ? intval($_POST['servicios']) : 0,
-            'fecha1' => isset($_POST['fecha1']) && !empty($_POST['fecha1']) ? $_POST['fecha1'] : null,
-            'fecha2' => isset($_POST['fecha2']) && !empty($_POST['fecha2']) ? $_POST['fecha2'] : null
-        ];
-        
-        $result = $model->create($data);
-        echo json_encode($result);
-        break;
-        
-    case 'update':
-        $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
-        if ($id <= 0) {
-            echo json_encode(['success' => false, 'error' => 'ID inválido']);
-            break;
+        // Completados (todos los módulos en 1)
+        $sql_completados = "SELECT COUNT(*) as total FROM FacBol.fa_main WHERE id_cliente = 1 AND recepcion = 1 AND despacho = 1 AND ocupabilidad = 1 AND servicios = 1";
+        $stmt_completados = sqlsrv_query($conn, $sql_completados);
+        $completados = 0;
+        if ($stmt_completados) {
+            $row = sqlsrv_fetch_array($stmt_completados, SQLSRV_FETCH_ASSOC);
+            $completados = $row['total'] ?? 0;
+            sqlsrv_free_stmt($stmt_completados);
         }
         
-        $data = [
-            'estado' => isset($_POST['estado']) ? trim($_POST['estado']) : 'PENDIENTE',
-            'recepcion' => isset($_POST['recepcion']) ? intval($_POST['recepcion']) : 0,
-            'despacho' => isset($_POST['despacho']) ? intval($_POST['despacho']) : 0,
-            'ocupabilidad' => isset($_POST['ocupabilidad']) ? intval($_POST['ocupabilidad']) : 0,
-            'servicios' => isset($_POST['servicios']) ? intval($_POST['servicios']) : 0,
-            'fecha1' => isset($_POST['fecha1']) && !empty($_POST['fecha1']) ? $_POST['fecha1'] : null,
-            'fecha2' => isset($_POST['fecha2']) && !empty($_POST['fecha2']) ? $_POST['fecha2'] : null
-        ];
+        // En proceso (al menos un módulo completado pero no todos)
+        $sql_proceso = "SELECT COUNT(*) as total FROM FacBol.fa_main WHERE id_cliente = 1 AND estado = 'EN_PROCESO'";
+        $stmt_proceso = sqlsrv_query($conn, $sql_proceso);
+        $enProceso = 0;
+        if ($stmt_proceso) {
+            $row = sqlsrv_fetch_array($stmt_proceso, SQLSRV_FETCH_ASSOC);
+            $enProceso = $row['total'] ?? 0;
+            sqlsrv_free_stmt($stmt_proceso);
+        }
         
-        $result = $model->update($id, $data);
-        echo json_encode($result);
+        // Calcular promedio de completado
+        $promedio = 0;
+        if ($total > 0) {
+            $promedio = round(($completados / $total) * 100);
+        }
+        
+        echo json_encode([
+            'success' => true,
+            'data' => [
+                'total' => $total,
+                'completados' => $completados,
+                'enProceso' => $enProceso,
+                'promedio' => $promedio
+            ]
+        ]);
         break;
         
     case 'delete':
         $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+        
         if ($id <= 0) {
-            echo json_encode(['success' => false, 'error' => 'ID inválido']);
+            echo json_encode(['success' => false, 'error' => 'ID no válido']);
             break;
         }
         
-        $result = $model->delete($id);
-        echo json_encode($result);
-        break;
+        // Verificar que la factura esté en estado EN_PROCESO
+        $sql_check = "SELECT estado FROM FacBol.fa_main WHERE id = ? AND id_cliente = 1";
+        $stmt_check = sqlsrv_query($conn, $sql_check, array($id));
+        $estado = null;
+        if ($stmt_check) {
+            $row = sqlsrv_fetch_array($stmt_check, SQLSRV_FETCH_ASSOC);
+            $estado = $row['estado'] ?? null;
+            sqlsrv_free_stmt($stmt_check);
+        }
         
-    case 'get_stats':
-        $stats = $model->getStats();
-        echo json_encode(['success' => true, 'data' => $stats]);
+        if ($estado !== 'EN_PROCESO') {
+            echo json_encode(['success' => false, 'error' => 'Solo se pueden eliminar facturas en estado EN_PROCESO']);
+            break;
+        }
+        
+        $sql_delete = "DELETE FROM FacBol.fa_main WHERE id = ? AND id_cliente = 1";
+        $stmt_delete = sqlsrv_query($conn, $sql_delete, array($id));
+        
+        if ($stmt_delete === false) {
+            $errors = sqlsrv_errors();
+            $error_msg = $errors ? $errors[0]['message'] : 'Error desconocido';
+            echo json_encode(['success' => false, 'error' => 'Error al eliminar: ' . $error_msg]);
+        } else {
+            echo json_encode(['success' => true]);
+        }
+        sqlsrv_free_stmt($stmt_delete);
         break;
         
     default:

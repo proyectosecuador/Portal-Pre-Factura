@@ -35,9 +35,13 @@ if ($stmt_cliente) {
     :root {
         --primary-color: #009a3f;
         --primary-dark: #007a32;
-        --success-color: #28a745;
+        --primary-light: #e8f5e9;
+        --info-color: #17a2b8;
         --warning-color: #ffc107;
+        --success-color: #28a745;
+        --danger-color: #dc3545;
     }
+
     .page-header-custom {
         background: linear-gradient(135deg, #009a3f 0%, #007a32 100%);
         border-radius: 15px;
@@ -50,12 +54,14 @@ if ($stmt_cliente) {
         flex-wrap: wrap;
         gap: 20px;
     }
+    
     .cliente-info-arcor {
         display: flex;
         align-items: center;
         gap: 20px;
         flex-wrap: wrap;
     }
+    
     .cliente-logo-arcor {
         width: 80px;
         height: 80px;
@@ -64,17 +70,45 @@ if ($stmt_cliente) {
         background: white;
         padding: 8px;
     }
+    
     .cliente-datos-arcor h2 {
         margin: 0;
         font-size: 24px;
         font-weight: 600;
     }
+    
+    .cliente-datos-arcor p {
+        margin: 5px 0 0;
+        opacity: 0.9;
+        font-size: 13px;
+    }
+    
+    .btn-volver {
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-volver:hover {
+        background: rgba(255,255,255,0.3);
+        transform: translateY(-2px);
+        color: white;
+    }
+    
     .stats-grid-arcor {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 20px;
         margin-bottom: 25px;
     }
+    
     .stat-card-arcor {
         background: white;
         border-radius: 15px;
@@ -83,7 +117,14 @@ if ($stmt_cliente) {
         display: flex;
         align-items: center;
         gap: 15px;
+        transition: transform 0.3s ease;
     }
+    
+    .stat-card-arcor:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
     .stat-icon-arcor {
         width: 50px;
         height: 50px;
@@ -95,93 +136,21 @@ if ($stmt_cliente) {
         justify-content: center;
         font-size: 24px;
     }
-    .modulo-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        align-items: center;
+    
+    .stat-info-arcor h3 {
+        margin: 0;
+        font-size: 14px;
+        color: #666;
+        font-weight: 400;
     }
-    .btn-modulo {
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 500;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-    }
-    .btn-pdf {
-        background: #dc3545;
-        color: white;
-    }
-    .modulo-pendiente-text {
-        font-size: 11px;
-        color: #999;
-        font-style: italic;
-    }
-    .badge-verde {
-        background: #28a745;
-        color: white;
-        padding: 3px 8px;
-        border-radius: 20px;
-        font-size: 10px;
-    }
-    .badge-gris {
-        background: #6c757d;
-        color: white;
-        padding: 3px 8px;
-        border-radius: 20px;
-        font-size: 10px;
-    }
-    .estado-badge {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 11px;
+    
+    .stat-info-arcor .stat-number {
+        font-size: 24px;
         font-weight: 600;
+        color: #333;
+        margin: 5px 0 0;
     }
-    .estado-VERIFICADO { background: #17a2b8; color: white; cursor: pointer; }
-    .estado-APROBADO { background: #28a745; color: white; }
-    .estado-OBSERVADO { background: #ffc107; color: #856404; cursor: pointer; }
-    .acciones-btns {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-    }
-    .btn-accion {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    .btn-accion:hover { transform: translateY(-2px); }
-    .btn-aprobar { background: #28a745; color: white; }
-    .btn-observar { background: #ffc107; color: #856404; }
-    .table-container {
-        background: white;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        overflow-x: auto;
-    }
-    .table thead th {
-        background: #f8f9fa;
-        border-bottom: 2px solid #009a3f;
-        padding: 12px;
-        white-space: nowrap;
-    }
-    .table tbody td {
-        vertical-align: middle;
-        padding: 12px;
-    }
+    
     .filtro-estado {
         background: white;
         border-radius: 15px;
@@ -191,21 +160,194 @@ if ($stmt_cliente) {
         align-items: center;
         gap: 15px;
         flex-wrap: wrap;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-    .btn-volver {
-        background: rgba(255,255,255,0.2);
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 50px;
+    
+    .table-container {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        overflow-x: auto;
+    }
+    
+    .table thead th {
+        background: #f8f9fa;
+        border-bottom: 2px solid #009a3f;
+        padding: 12px;
+        white-space: nowrap;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .table tbody tr:hover {
+        background: #f8f9fa;
+        transition: background 0.2s ease;
+    }
+    
+    .table tbody td {
+        vertical-align: middle;
+        padding: 12px;
+    }
+    
+    /* ============================================
+       BOTONES MEJORADOS
+       ============================================ */
+    
+    /* Botones PDF - Fondo blanco, texto rojo */
+    .btn-pdf-module {
+        background: white;
+        color: #dc3545;
+        border: 1.5px solid #dc3545;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        cursor: pointer;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        text-decoration: none;
+        gap: 5px;
     }
-    .btn-volver:hover {
-        background: rgba(255,255,255,0.3);
+    
+    .btn-pdf-module:hover {
+        background: #dc3545;
         color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(220,53,69,0.3);
+    }
+    
+    /* Botón Aprobar */
+    .btn-aprobar {
+        background: #28a745;
+        color: white;
+        padding: 6px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+    
+    .btn-aprobar:hover {
+        background: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(40,167,69,0.3);
+    }
+    
+    /* Botón Observar */
+    .btn-observar {
+        background: #ffc107;
+        color: #856404;
+        padding: 6px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+    
+    .btn-observar:hover {
+        background: #e0a800;
+        color: #856404;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(255,193,7,0.3);
+    }
+    
+    /* Modulo buttons container */
+    .modulo-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: center;
+    }
+    
+    .modulo-pendiente-text {
+        font-size: 11px;
+        color: #999;
+        font-style: italic;
+        margin-bottom: 4px;
+    }
+    
+    /* Estado badges */
+    .estado-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+    
+    .estado-VERIFICADO { background: #17a2b8; color: white; cursor: pointer; }
+    .estado-APROBADO { background: #28a745; color: white; }
+    .estado-OBSERVADO { background: #ffc107; color: #856404; cursor: pointer; }
+    .estado-EN_PROCESO { background: #fff3cd; color: #856404; }
+    .estado-APROBADO_CLIENTE { background: #28a745; color: white; }
+    .estado-OBSERVACION_CLIENTE { background: #ffc107; color: #856404; cursor: pointer; }
+    .estado-FACTURADO { background: #6f42c1; color: white; }
+    .estado-PAGADO { background: #20c997; color: white; }
+    
+    /* Acciones container */
+    .acciones-btns {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    /* Resumen */
+    .resumen-completo, .resumen-incompleto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .badge-verde {
+        background: #28a745;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 20px;
+        font-size: 10px;
+    }
+    
+    .badge-gris {
+        background: #6c757d;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 500;
+    }
+    
+    .empty-message {
+        text-align: center;
+        padding: 40px;
+        color: #999;
+    }
+    
+    .empty-message i {
+        font-size: 48px;
+        margin-bottom: 15px;
+        color: #ddd;
+    }
+    
+    .page-title h3 {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 20px;
     }
 </style>
 
@@ -241,14 +383,32 @@ if ($stmt_cliente) {
     </div>
     
     <div class="stats-grid-arcor">
-        <div class="stat-card-arcor"><div class="stat-icon-arcor"><i class="fa fa-clock-o"></i></div><div class="stat-info-arcor"><h3>Pendientes</h3><div class="stat-number" id="totalPendientes">0</div></div></div>
-        <div class="stat-card-arcor"><div class="stat-icon-arcor"><i class="fa fa-check-circle"></i></div><div class="stat-info-arcor"><h3>Aprobadas</h3><div class="stat-number" id="totalAprobadas">0</div></div></div>
-        <div class="stat-card-arcor"><div class="stat-icon-arcor"><i class="fa fa-eye"></i></div><div class="stat-info-arcor"><h3>Observadas</h3><div class="stat-number" id="totalObservadas">0</div></div></div>
+        <div class="stat-card-arcor">
+            <div class="stat-icon-arcor"><i class="fa fa-clock-o"></i></div>
+            <div class="stat-info-arcor">
+                <h3>Pendientes</h3>
+                <div class="stat-number" id="totalPendientes">0</div>
+            </div>
+        </div>
+        <div class="stat-card-arcor">
+            <div class="stat-icon-arcor"><i class="fa fa-check-circle"></i></div>
+            <div class="stat-info-arcor">
+                <h3>Aprobadas</h3>
+                <div class="stat-number" id="totalAprobadas">0</div>
+            </div>
+        </div>
+        <div class="stat-card-arcor">
+            <div class="stat-icon-arcor"><i class="fa fa-eye"></i></div>
+            <div class="stat-info-arcor">
+                <h3>Observadas</h3>
+                <div class="stat-number" id="totalObservadas">0</div>
+            </div>
+        </div>
     </div>
     
     <div class="filtro-estado">
         <label><i class="fa fa-filter"></i> Filtrar por Estado:</label>
-        <select id="filtro_estado" class="form-control">
+        <select id="filtro_estado" class="form-control" style="width: 200px;">
             <option value="">Todos</option>
             <option value="VERIFICADO">VERIFICADO</option>
             <option value="APROBADO">APROBADO</option>
@@ -259,23 +419,29 @@ if ($stmt_cliente) {
     </div>
     
     <div class="table-container">
-        <table class="table table-striped" id="tablaFaMainAprobar">
+        <table class="table table-striped table-hover" id="tablaFaMainAprobar">
             <thead>
-                32
-                    <th>ID</th>
-                    <th>Estado</th>
-                    <th>Recepción</th>
-                    <th>Despacho</th>
-                    <th>Ocupabilidad</th>
-                    <th>Servicios</th>
-                    <th>Resumen</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Fin</th>
-                    <th>Sede</th>
-                    <th>Acciones</th>
-                </thead>
+                <tr>
+                    <th style="width: 50px;">ID</th>
+                    <th style="width: 140px;">Estado</th>
+                    <th style="width: 100px;">Recepción</th>
+                    <th style="width: 100px;">Despacho</th>
+                    <th style="width: 100px;">Ocupabilidad</th>
+                    <th style="width: 100px;">Servicios</th>
+                    <th style="width: 120px;">Resumen</th>
+                    <th style="width: 100px;">Fecha Inicio</th>
+                    <th style="width: 100px;">Fecha Fin</th>
+                    <th style="width: 120px;">Sede</th>
+                    <th style="width: 160px;">Acciones</th>
+                </tr>
+            </thead>
             <tbody id="tablaBody">
-                32<td colspan="11" class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><p>Cargando datos...</p>32</div>
+                <tr>
+                    <td colspan="11" class="text-center">
+                        <i class="fa fa-spinner fa-spin fa-2x"></i>
+                        <p>Cargando datos...</p>
+                    </div>
+                </div>
             </tbody>
         </div>
     </div>

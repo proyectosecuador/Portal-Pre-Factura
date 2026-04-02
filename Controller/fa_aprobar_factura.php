@@ -128,6 +128,7 @@ try {
         $mensaje_principal = "Le informamos que la pre-factura ha sido revisada y <strong>APROBADA</strong> por nuestro equipo. Se encuentra pendiente de su aprobación final para proceder con la facturación correspondiente.";
         $boton_texto = " REVISAR PRE-FACTURA";
         $link_pagina = "http://localhost/Portal-Pre%20Factura/pages/global/index.php?opc=fa_aprobar_cliente_arcor&id={$factura_id}";
+        //$base_url = (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/Portal-Pre-Factura/';
         $pasos = "<ul>
             <li>Revise los detalles de la pre-factura</li>
             <li>Verifique que toda la información sea correcta</li>

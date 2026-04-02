@@ -1,6 +1,7 @@
 /**
  * fa_aprobar_arcor.js
  * JavaScript para la gestión de aprobación de facturas
+ * CON DISEÑO MEJORADO (mismo estilo que fa_main_arcor)
  */
 
 let datosRegistros = [];
@@ -108,8 +109,10 @@ function renderizarTabla(data) {
         let estadoHtml = `<span class="estado-badge ${estadoClass}">${row.estado}</span>`;
         
         // Si el estado es OBSERVADO, agregar evento de clic para mostrar observación
-        if (row.estado === 'OBSERVADO' && row.observacion_aprobador) {
-            estadoHtml = `<span class="estado-badge ${estadoClass}" style="cursor: pointer;" onclick="verObservacion('${escapeHtml(row.observacion_aprobador)}', ${row.id})">${row.estado}</span>`;
+        if (row.estado === 'OBSERVADO' && row.observacion_aprobador && row.observacion_aprobador.trim() !== '') {
+            estadoHtml = `<span class="estado-badge ${estadoClass}" style="cursor: pointer;" onclick="verObservacion('${escapeHtml(row.observacion_aprobador)}', ${row.id}, 'Observación del Aprobador')">
+                            <i class="fa fa-comment"></i> ${row.estado}
+                          </span>`;
         }
         
         // ============================================
@@ -119,7 +122,7 @@ function renderizarTabla(data) {
         if (row.recepcion == 1) {
             recepcionHtml = `
                 <div class="modulo-buttons">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('recepcion', ${row.id})" title="Generar PDF">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('recepcion', ${row.id})" title="Generar PDF">
                         <i class="fa fa-file-pdf-o"></i> PDF
                     </button>
                 </div>
@@ -135,7 +138,7 @@ function renderizarTabla(data) {
         if (row.despacho == 1) {
             despachoHtml = `
                 <div class="modulo-buttons">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('despacho', ${row.id})" title="Generar PDF">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('despacho', ${row.id})" title="Generar PDF">
                         <i class="fa fa-file-pdf-o"></i> PDF
                     </button>
                 </div>
@@ -151,7 +154,7 @@ function renderizarTabla(data) {
         if (row.ocupabilidad == 1) {
             ocupabilidadHtml = `
                 <div class="modulo-buttons">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('ocupabilidad', ${row.id})" title="Generar PDF">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('ocupabilidad', ${row.id})" title="Generar PDF">
                         <i class="fa fa-file-pdf-o"></i> PDF
                     </button>
                 </div>
@@ -167,7 +170,7 @@ function renderizarTabla(data) {
         if (row.servicios == 1) {
             serviciosHtml = `
                 <div class="modulo-buttons">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('servicios', ${row.id})" title="Generar PDF">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('servicios', ${row.id})" title="Generar PDF">
                         <i class="fa fa-file-pdf-o"></i> PDF
                     </button>
                 </div>
@@ -183,7 +186,7 @@ function renderizarTabla(data) {
         if (completados == 4) {
             resumenHtml = `
                 <div class="resumen-completo">
-                    <button class="btn-modulo btn-pdf" onclick="generarPDF('resumen', ${row.id})" title="Generar PDF Completo">
+                    <button class="btn-modulo btn-pdf-module" onclick="generarPDF('resumen', ${row.id})" title="Generar PDF Completo">
                         <i class="fa fa-file-pdf-o"></i> PDF Completo
                     </button>
                     <span class="badge-verde">Disponible</span>
@@ -218,10 +221,10 @@ function renderizarTabla(data) {
             accionesHtml = `
                 <div class="acciones-btns">
                     <button class="btn-accion btn-aprobar" onclick="aprobarFactura(${row.id})" title="Aprobar factura">
-                        <i class="fa fa-check-circle"></i>
+                        <i class="fa fa-check-circle"></i> Aprobar
                     </button>
                     <button class="btn-accion btn-observar" onclick="observarFactura(${row.id})" title="Observar factura">
-                        <i class="fa fa-exclamation-triangle"></i>
+                        <i class="fa fa-exclamation-triangle"></i> Observar
                     </button>
                 </div>
             `;
@@ -250,19 +253,24 @@ function renderizarTabla(data) {
 // ============================================
 // FUNCIÓN PARA VER OBSERVACIÓN
 // ============================================
-function verObservacion(observacion, facturaId) {
+function verObservacion(observacion, facturaId, titulo) {
     Swal.fire({
-        title: 'Observación de Factura',
+        title: titulo || 'Observación de Factura',
         html: `
-            <p><strong>Factura ID:</strong> ${facturaId}</p>
-            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; text-align: left;">
-                <strong><i class="fa fa-comment"></i> Motivo de la observación:</strong><br>
-                ${observacion}
+            <div style="text-align: left;">
+                <p><strong>Factura ID:</strong> ${facturaId}</p>
+                <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 8px;">
+                    <strong><i class="fa fa-comment"></i> Motivo:</strong>
+                    <div style="margin-top: 10px; white-space: pre-wrap; word-wrap: break-word; max-height: 300px; overflow-y: auto;">
+                        ${escapeHtml(observacion)}
+                    </div>
+                </div>
             </div>
         `,
         icon: 'warning',
         confirmButtonText: 'Cerrar',
-        confirmButtonColor: '#009a3f'
+        confirmButtonColor: '#009a3f',
+        width: '600px'
     });
 }
 
@@ -296,7 +304,7 @@ function aprobarFactura(id) {
                 didOpen: () => Swal.showLoading()
             });
             
-            fetch('/Portal-Pre%20Factura/Controller/fa_aprobar_factura.php', {
+            fetch('../../Controller/fa_aprobar_factura.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ factura_id: id, accion: 'aprobar' })
@@ -314,7 +322,7 @@ function aprobarFactura(id) {
                 if (data.success) {
                     Swal.fire({
                         title: '¡Factura aprobada!',
-                        text: data.error,
+                        text: data.error || data.message || 'Factura aprobada correctamente',
                         icon: 'success'
                     });
                     cargarTabla();
@@ -358,6 +366,10 @@ function observarFactura(id) {
                 Swal.showValidationMessage('Debe ingresar un motivo para la observación');
                 return false;
             }
+            if (motivo.trim().length < 10) {
+                Swal.showValidationMessage('Por favor, proporcione un motivo más detallado (mínimo 10 caracteres)');
+                return false;
+            }
             return motivo;
         }
     }).then((result) => {
@@ -369,7 +381,7 @@ function observarFactura(id) {
                 didOpen: () => Swal.showLoading()
             });
             
-            fetch('/Portal-Pre%20Factura/Controller/fa_aprobar_factura.php', {
+            fetch('../../Controller/fa_aprobar_factura.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
@@ -391,7 +403,7 @@ function observarFactura(id) {
                 if (data.success) {
                     Swal.fire({
                         title: 'Factura observada',
-                        text: data.error,
+                        text: data.error || data.message || 'Observación registrada correctamente',
                         icon: 'warning'
                     });
                     cargarTabla();
@@ -448,5 +460,6 @@ function escapeHtml(text) {
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(/'/g, "&#039;")
+        .replace(/\n/g, "<br>");
 }

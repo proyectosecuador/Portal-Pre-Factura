@@ -3,6 +3,7 @@
 
 """
 Procesador optimizado para Despacho
+MODIFICADO: Extrae sede desde hoja "Data" columna GS (WHSEID) desde la fila 4 en adelante
 """
 
 import pandas as pd
@@ -30,6 +31,16 @@ class DespachoProcesador:
                'CAJAS', 'PALLETS', 'STATUS', 'ADDDATE']
     
     STATUS_VALIDOS = ['55', '92', '95']
+    
+    # Mapeo de WHSEID a SEDE
+    MAPEO_SEDES = {
+        'wmwhse6': 'Toborochi',
+        'wmwhse7': 'Illimani',
+        'wmwhse43': 'Tunari',
+        'wmwhse44': 'Illampu',
+        'wmwhse8': 'Quito',
+        'wmwhse3': 'Guayaquil',
+    }
     
     def __init__(self):
         self.logger = logger
@@ -104,6 +115,108 @@ class DespachoProcesador:
             self.logger.error(f"Error convirtiendo fecha {valor}: {e}")
             return None
     
+    def _extraer_sede_desde_hoja_data(self, archivo_path):
+        """
+        Extrae la sede desde la hoja "Data" columna GS (WHSEID)
+        Busca en las filas desde la fila 4 en adelante (índice 3)
+        Retorna: nombre de la sede o None si no se encuentra
+        """
+        print(f"\n{'='*60}")
+        print("🔍 BUSCANDO SEDE DESDE HOJA 'Data'")
+        print(f"{'='*60}")
+        
+        try:
+            # Leer el archivo Excel completo
+            excel_file = pd.ExcelFile(archivo_path, engine='openpyxl')
+            sheet_names = excel_file.sheet_names
+            
+            print(f"📊 Hojas disponibles: {sheet_names}")
+            
+            # Buscar hoja que se llame exactamente "Data" (case insensitive)
+            hoja_data = None
+            for name in sheet_names:
+                if name.lower() == 'data':
+                    hoja_data = name
+                    break
+            
+            if not hoja_data:
+                print("⚠️ No se encontró hoja 'Data' en el archivo")
+                return None
+            
+            print(f"📄 Hoja 'Data' encontrada: {hoja_data}")
+            
+            # Leer la hoja Data SIN encabezado para tener control exacto de filas
+            df_data = pd.read_excel(archivo_path, sheet_name=hoja_data, engine='openpyxl', header=None)
+            print(f"📊 Hoja Data tiene {len(df_data)} filas y {len(df_data.columns)} columnas")
+            
+            # Calcular índice de columna GS
+            col_gs_index = self._excel_col_to_index('GS')
+            print(f"📍 Columna GS (letra) = índice {col_gs_index}")
+            
+            # Verificar que la columna existe
+            if col_gs_index >= len(df_data.columns):
+                print(f"⚠️ La columna GS (índice {col_gs_index}) no existe. Máxima columna: {len(df_data.columns)-1}")
+                return None
+            
+            # MOSTRAR ESTRUCTURA DE LAS PRIMERAS 10 FILAS PARA DEPURACIÓN
+            print("\n🔍 ESTRUCTURA DE LA HOJA DATA (primeras 10 filas, columna GS):")
+            print("=" * 60)
+            for i in range(min(10, len(df_data))):
+                valor = df_data.iloc[i, col_gs_index] if col_gs_index < len(df_data.columns) else 'N/A'
+                print(f"Fila {i}: {valor}")
+            print("=" * 60)
+            
+            # Buscar la primera fila que contenga un WHSEID válido (wmwhse6, wmwhse7, etc.)
+            # Empezamos desde la fila 3 (índice 2) para saltar posibles encabezados
+            # Pero para estar más seguros, empezamos desde la fila 4 (índice 3)
+            fila_inicio = 3  # Fila 4 en Excel (índice 3)
+            print(f"📌 Buscando valores desde fila {fila_inicio} en adelante (índice {fila_inicio})")
+            
+            # Lista de WHSEID válidos para identificar
+            whseid_validos = list(self.MAPEO_SEDES.keys())
+            print(f"📌 WHSEID válidos: {whseid_validos}")
+            
+            # Extraer valores de la columna GS desde la fila_inicio en adelante
+            valores_whseid = []
+            for i in range(fila_inicio, len(df_data)):
+                valor = df_data.iloc[i, col_gs_index]
+                if pd.notna(valor):
+                    valor_str = str(valor).strip().lower()
+                    # Verificar que no sea un encabezado como 'almacén', 'whseid', etc.
+                    if valor_str and valor_str != '' and valor_str != 'nan' and valor_str not in ['almacen', 'whseid', 'warehouse', 'almacén']:
+                        # Verificar que tenga formato de WHSEID (empieza con wmwhse)
+                        if valor_str.startswith('wmwhse'):
+                            valores_whseid.append(valor_str)
+                            print(f"   ✅ Fila {i}: Valor válido encontrado: {valor_str}")
+            
+            print(f"\n🔍 Valores encontrados en columna GS: {valores_whseid[:10]}")  # Mostrar primeros 10
+            
+            if len(valores_whseid) == 0:
+                print("⚠️ No se encontraron valores válidos en la columna GS")
+                return None
+            
+            # Obtener el primer valor no vacío y no nulo
+            whseid_raw = valores_whseid[0]
+            print(f"🏷️ WHSEID encontrado: '{whseid_raw}'")
+            
+            # Buscar en el mapeo
+            sede = self.MAPEO_SEDES.get(whseid_raw)
+            
+            if sede:
+                print(f"✅ Sede determinada: {sede} (WHSEID: {whseid_raw})")
+            else:
+                print(f"⚠️ WHSEID '{whseid_raw}' no está en el mapeo de sedes")
+                # Si no está en el mapeo, usar el valor como está (capitalizado)
+                sede = whseid_raw.upper()
+                print(f"   Usando valor original: {sede}")
+            
+            return sede
+            
+        except Exception as e:
+            print(f"❌ Error extrayendo sede: {str(e)}")
+            self.logger.error(f"Error extrayendo sede: {e}", exc_info=True)
+            return None
+    
     def _aplicar_filtros_fecha(self, df, col_fecha, fecha_desde, fecha_hasta):
         """Aplica filtros de fecha al dataframe"""
         stats = {
@@ -144,7 +257,6 @@ class DespachoProcesador:
         # FILTRO DESDE
         if fecha_desde and fecha_desde != '' and fecha_desde != 'null':
             try:
-                # Convertir la fecha desde a datetime
                 fecha_desde_dt = pd.to_datetime(fecha_desde, format='%Y-%m-%d')
                 print(f"🔍 Aplicando filtro DESDE: {fecha_desde_dt}")
                 df_filtrado = df_filtrado[df_filtrado[col_fecha] >= fecha_desde_dt]
@@ -155,7 +267,6 @@ class DespachoProcesador:
         # FILTRO HASTA
         if fecha_hasta and fecha_hasta != '' and fecha_hasta != 'null':
             try:
-                # Convertir la fecha hasta a datetime y agregar 1 día para incluir el día completo
                 fecha_hasta_dt = pd.to_datetime(fecha_hasta, format='%Y-%m-%d') + pd.Timedelta(days=1)
                 print(f"🔍 Aplicando filtro HASTA: {fecha_hasta_dt}")
                 df_filtrado = df_filtrado[df_filtrado[col_fecha] <= fecha_hasta_dt]
@@ -205,6 +316,17 @@ class DespachoProcesador:
         print(f"[{request_id}] Fechas recibidas - Desde: '{fecha_desde}', Hasta: '{fecha_hasta}'")
         print(f"{'='*60}\n")
         
+        # ============================================
+        # EXTRAER SEDE DESDE HOJA "Data" COLUMNA GS
+        # ============================================
+        sede_determinada = self._extraer_sede_desde_hoja_data(archivo_path)
+        
+        if sede_determinada:
+            print(f"🏢 SEDE DETERMINADA: {sede_determinada}")
+        else:
+            print(f"⚠️ No se pudo determinar la sede, se guardará como 'No especificada'")
+            sede_determinada = 'No especificada'
+        
         try:
             # Leer Excel
             excel_file = pd.ExcelFile(archivo_path, engine='openpyxl')
@@ -212,7 +334,7 @@ class DespachoProcesador:
             
             df = pd.read_excel(archivo_path, sheet_name=hoja, engine='openpyxl', header=None)
             self.logger.info(f"[{request_id}] Hoja: {hoja}, Filas totales: {len(df)}")
-            print(f"📊 Hoja encontrada: {hoja}, Filas totales: {len(df)}")
+            print(f"📊 Hoja Detail encontrada: {hoja}, Filas totales: {len(df)}")
             
             # Extraer columnas específicas
             df_resultado = pd.DataFrame()
@@ -285,11 +407,30 @@ class DespachoProcesador:
                 'total_unidades': int(df_agrupado['UNIDADES'].sum()) if len(df_agrupado) > 0 else 0,
                 'total_cajas': int(df_agrupado['CAJAS'].sum()) if len(df_agrupado) > 0 else 0,
                 'total_pallets': int(df_agrupado['PALLETS'].sum()) if len(df_agrupado) > 0 else 0,
-                'orderkeys_unicos': df_agrupado['ORDERKEY'].nunique() if len(df_agrupado) > 0 else 0
+                'orderkeys_unicos': df_agrupado['ORDERKEY'].nunique() if len(df_agrupado) > 0 else 0,
+                'sede': sede_determinada
             }
             
             preview_data = self._convertir_dataframe_a_lista(df_agrupado.head(100))
             full_data = self._convertir_dataframe_a_lista(df_agrupado)
+            
+            # Obtener el WHSEID original para debug
+            whseid_original = None
+            try:
+                excel_file_debug = pd.ExcelFile(archivo_path, engine='openpyxl')
+                if 'Data' in [n.lower() for n in excel_file_debug.sheet_names]:
+                    df_data_debug = pd.read_excel(archivo_path, sheet_name='Data', engine='openpyxl', header=None)
+                    col_gs_idx = self._excel_col_to_index('GS')
+                    if col_gs_idx < len(df_data_debug.columns):
+                        for i in range(3, min(10, len(df_data_debug))):
+                            val = df_data_debug.iloc[i, col_gs_idx]
+                            if pd.notna(val):
+                                val_str = str(val).strip().lower()
+                                if val_str.startswith('wmwhse'):
+                                    whseid_original = val_str
+                                    break
+            except:
+                pass
             
             print(f"\n📊 RESUMEN FINAL:")
             print(f"   Total registros: {len(df_agrupado)}")
@@ -297,6 +438,8 @@ class DespachoProcesador:
             print(f"   Cajas: {stats['total_cajas']}")
             print(f"   Pallets: {stats['total_pallets']}")
             print(f"   Rango fechas: {stats['fecha_min']} - {stats['fecha_max']}")
+            print(f"   🏢 SEDE DETECTADA: {stats['sede']}")
+            print(f"   🏷️ WHSEID ORIGINAL: {whseid_original}")
             print(f"{'='*60}\n")
             
             return {
@@ -306,13 +449,17 @@ class DespachoProcesador:
                 'data': preview_data,
                 'data_completa': full_data,
                 'stats': stats,
+                'sede': sede_determinada,
+                'whseid': whseid_original,
                 'metadata': {
                     'archivo_nombre': os.path.basename(archivo_path),
                     'hoja_procesada': hoja,
                     'fechas_aplicadas': {
                         'desde': fecha_desde,
                         'hasta': fecha_hasta
-                    }
+                    },
+                    'sede_detectada': sede_determinada,
+                    'whseid_original': whseid_original
                 }
             }
             

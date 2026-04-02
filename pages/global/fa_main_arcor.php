@@ -1,4 +1,8 @@
 <?php
+/**
+ * fa_main_arcor.php
+ * Página principal de gestión de facturas para Arcor
+ */
 
 // Incluir configuraciones necesarias
 include_once('../../Conexion/conexion_mysqli.php');
@@ -38,7 +42,7 @@ if ($stmt_cliente) {
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!-- Estilos personalizados -->
+<!-- Estilos personalizados mejorados -->
 <style>
     :root {
         --primary-color: #009a3f;
@@ -106,6 +110,11 @@ if ($stmt_cliente) {
         text-decoration: none;
     }
     
+    .btn-nuevo-registro:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
     .stats-grid-arcor {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -122,6 +131,11 @@ if ($stmt_cliente) {
         align-items: center;
         gap: 15px;
         transition: transform 0.3s ease;
+    }
+    
+    .stat-card-arcor:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
     
     .stat-icon-arcor {
@@ -150,131 +164,17 @@ if ($stmt_cliente) {
         margin: 5px 0 0;
     }
     
-    .modulo-buttons {
+    .filtro-estado {
+        background: white;
+        border-radius: 15px;
+        padding: 15px 20px;
+        margin-bottom: 20px;
         display: flex;
-        flex-direction: column;
-        gap: 5px;
         align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-    
-    .btn-modulo {
-        padding: 5px 10px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 500;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-    }
-    
-    .btn-pdf {
-        background: #dc3545;
-        color: white;
-    }
-    
-    .btn-actualizar, .btn-editar-modulo {
-        background: #ffc107;
-        color: #333;
-    }
-    
-    .modulo-pendiente-text {
-        font-size: 11px;
-        color: #999;
-        font-style: italic;
-    }
-    
-    .resumen-completo, .resumen-incompleto {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
-    }
-    
-    .badge-verde {
-        background: #28a745;
-        color: white;
-        padding: 3px 8px;
-        border-radius: 20px;
-        font-size: 10px;
-    }
-    
-    .badge-gris {
-        background: #6c757d;
-        color: white;
-        padding: 3px 8px;
-        border-radius: 20px;
-        font-size: 10px;
-    }
-    
-    .estado-badge {
-        display: inline-block;
-        padding: 4px 10px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 600;
-    }
-    
-    .estado-PENDIENTE { background: #e2e3e5; color: #383d41; }
-    .estado-EN_PROCESO { background: #fff3cd; color: #856404; }
-    .estado-COMPLETADO { background: #d4edda; color: #155724; }
-    .estado-CERRADO { background: #cce5ff; color: #004085; }
-    
-    .progress { height: 8px; border-radius: 4px; margin-top: 5px; background: #e0e0e0; }
-    .progress-bar { background: #009a3f; }
-    
-    .resumen-badge {
-        display: inline-block;
-        padding: 5px 12px;
-        border-radius: 30px;
-        font-size: 12px;
-        font-weight: 600;
-    }
-    
-    .resumen-completo { background: #d4edda; color: #155724; }
-    .resumen-parcial-alto { background: #fff3cd; color: #856404; }
-    .resumen-parcial-bajo { background: #ffe5e5; color: #dc3545; }
-    .resumen-pendiente { background: #e2e3e5; color: #383d41; }
-    
-    .modulo-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        margin: 0 2px;
-    }
-    
-    .modulo-completado { background: #28a745; color: white; }
-    .modulo-pendiente { background: #dc3545; color: white; }
-    
-    .acciones-btns {
-        display: flex;
-        gap: 8px;
-        justify-content: center;
-    }
-    
-    .btn-accion {
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-    
-    .btn-accion:hover { transform: translateY(-2px); }
-    .btn-editar { background: #009a3f; color: white; }
-    .btn-eliminar { background: #dc3545; color: white; }
-    .btn-ver { background: #17a2b8; color: white; }
-    .btn-estado { background: #17a2b8; color: white; }
     
     .table-container {
         background: white;
@@ -289,6 +189,13 @@ if ($stmt_cliente) {
         border-bottom: 2px solid #009a3f;
         padding: 12px;
         white-space: nowrap;
+        font-weight: 600;
+        color: #333;
+    }
+    
+    .table tbody tr:hover {
+        background: #f8f9fa;
+        transition: background 0.2s ease;
     }
     
     .table tbody td {
@@ -296,15 +203,206 @@ if ($stmt_cliente) {
         padding: 12px;
     }
     
-    .filtro-estado {
+    /* ============================================
+       BOTONES MEJORADOS
+       ============================================ */
+    
+    /* Botones PDF - Fondo blanco, texto rojo */
+    .btn-pdf-module {
         background: white;
-        border-radius: 15px;
-        padding: 15px 20px;
-        margin-bottom: 20px;
-        display: flex;
+        color: #dc3545;
+        border: 1.5px solid #dc3545;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: inline-flex;
         align-items: center;
-        gap: 15px;
+        gap: 5px;
+    }
+    
+    .btn-pdf-module:hover {
+        background: #dc3545;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(220,53,69,0.3);
+    }
+    
+    /* Botones Actualizar - Fondo blanco, texto celeste */
+    .btn-update-module {
+        background: white;
+        color: #17a2b8;
+        border: 1.5px solid #17a2b8;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .btn-update-module:hover {
+        background: #17a2b8;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(23,162,184,0.3);
+    }
+    
+    /* Botones Editar - Fondo blanco, texto gris */
+    .btn-edit-module {
+        background: white;
+        color: #6c757d;
+        border: 1.5px solid #6c757d;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .btn-edit-module:hover {
+        background: #6c757d;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(108,117,125,0.3);
+    }
+    
+    /* Botones deshabilitados */
+    .btn-update-module.disabled, 
+    .btn-edit-module.disabled,
+    .btn-pdf-module.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+    
+    /* Botón Verificar mejorado - más ancho */
+    .btn-verificar {
+        background: #28a745;
+        color: white;
+        padding: 6px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+    
+    .btn-verificar:hover {
+        background: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(40,167,69,0.3);
+    }
+    
+    /* Botón Eliminar mejorado */
+    .btn-eliminar {
+        background: #dc3545;
+        color: white;
+        padding: 6px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+    
+    .btn-eliminar:hover {
+        background: #c82333;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(220,53,69,0.3);
+    }
+    
+    /* Modulo buttons container */
+    .modulo-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: center;
+    }
+    
+    .modulo-pendiente-text {
+        font-size: 11px;
+        color: #999;
+        font-style: italic;
+        margin-bottom: 4px;
+    }
+    
+    /* Estado badges mejorados */
+    .estado-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+    }
+    
+    /* Estados con cursor pointer para observaciones */
+    .estado-OBSERVADO, 
+    .estado-OBSERVACION_CLIENTE {
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .estado-OBSERVADO:hover,
+    .estado-OBSERVACION_CLIENTE:hover {
+        transform: scale(1.02);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    /* Colores de estados */
+    .estado-EN_PROCESO { background: #fff3cd; color: #856404; }
+    .estado-VERIFICADO { background: #17a2b8; color: white; }
+    .estado-APROBADO { background: #28a745; color: white; }
+    .estado-OBSERVADO { background: #ffc107; color: #856404; }
+    .estado-APROBADO_CLIENTE { background: #28a745; color: white; }
+    .estado-OBSERVACION_CLIENTE { background: #ffc107; color: #856404; }
+    .estado-FACTURADO { background: #6f42c1; color: white; }
+    .estado-PAGADO { background: #20c997; color: white; }
+    
+    /* Acciones container */
+    .acciones-btns {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
         flex-wrap: wrap;
+    }
+    
+    /* Resumen mejorado - sin badge verde */
+    .resumen-completo, .resumen-incompleto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .badge-gris {
+        background: #6c757d;
+        color: white;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 500;
     }
     
     .empty-message {
@@ -313,52 +411,30 @@ if ($stmt_cliente) {
         color: #999;
     }
     
+    .empty-message i {
+        font-size: 48px;
+        margin-bottom: 15px;
+        color: #ddd;
+    }
+    
     .page-title h3 {
         font-weight: 600;
         color: #333;
+        margin-bottom: 20px;
     }
-    .btn-verificar {
-    background: #28a745;
-    color: white;
-}
-
-.btn-verificar:hover {
-    background: #218838;
-    transform: translateY(-2px);
-}
-.btn-verificar {
-    background: #28a745;
-    color: white;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-verificar:hover {
-    background: #218838;
-    transform: translateY(-2px);
-}
-
-.btn-modulo.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-.btn-modulo.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-}
+    
+    /* Tooltip personalizado */
+    [title] {
+        position: relative;
+    }
 </style>
 
 <div class="">
-
+    <div class="page-title">
+        <div class="title_left">
+            <h3><i class="fa fa-file-text"></i> Gestión de Facturas - Arcor</h3>
+        </div>
+    </div>
 
     <div class="clearfix"></div>
 
@@ -386,37 +462,76 @@ if ($stmt_cliente) {
         </div>
     </div>
 
-    
+    <div class="stats-grid-arcor">
+        <div class="stat-card-arcor">
+            <div class="stat-icon-arcor"><i class="fa fa-files-o"></i></div>
+            <div class="stat-info-arcor">
+                <h3>Total Registros</h3>
+                <div class="stat-number" id="totalRegistros">0</div>
+            </div>
+        </div>
+        <div class="stat-card-arcor">
+            <div class="stat-icon-arcor"><i class="fa fa-check-circle"></i></div>
+            <div class="stat-info-arcor">
+                <h3>Completados</h3>
+                <div class="stat-number" id="totalCompletados">0</div>
+            </div>
+        </div>
+        <div class="stat-card-arcor">
+            <div class="stat-icon-arcor"><i class="fa fa-clock-o"></i></div>
+            <div class="stat-info-arcor">
+                <h3>En Proceso</h3>
+                <div class="stat-number" id="totalProceso">0</div>
+            </div>
+        </div>
+        <div class="stat-card-arcor">
+            <div class="stat-icon-arcor"><i class="fa fa-percent"></i></div>
+            <div class="stat-info-arcor">
+                <h3>Promedio Completado</h3>
+                <div class="stat-number" id="promedioCompletado">0%</div>
+            </div>
+        </div>
+    </div>
+
     <div class="filtro-estado">
         <label><i class="fa fa-filter"></i> Filtrar por Estado:</label>
-        <select id="filtro_estado" class="form-control">
+        <select id="filtro_estado" class="form-control" style="width: 200px;">
             <option value="">Todos</option>
-            <option value="PENDIENTE">PENDIENTE</option>
             <option value="EN_PROCESO">EN PROCESO</option>
-            <option value="COMPLETADO">COMPLETADO</option>
-            <option value="CERRADO">CERRADO</option>
+            <option value="VERIFICADO">VERIFICADO</option>
+            <option value="APROBADO">APROBADO</option>
+            <option value="OBSERVADO">OBSERVADO</option>
+            <option value="APROBADO_CLIENTE">APROBADO CLIENTE</option>
+            <option value="OBSERVACION_CLIENTE">OBSERVACIÓN CLIENTE</option>
+            <option value="FACTURADO">FACTURADO</option>
+            <option value="PAGADO">PAGADO</option>
         </select>
         <button class="btn btn-success btn-sm" onclick="cargarTabla()"><i class="fa fa-search"></i> Buscar</button>
         <button class="btn btn-default btn-sm" onclick="limpiarFiltros()"><i class="fa fa-eraser"></i> Limpiar</button>
     </div>
     
     <div class="table-container">
-        <table class="table table-striped" id="tablaFaMainArcor">
+        <table class="table table-striped table-hover" id="tablaFaMainArcor">
             <thead>
-                32
-                    <th>ID</th>
-                    <th>Estado</th>
-                    <th>Recepción</th>
-                    <th>Despacho</th>
-                    <th>Ocupabilidad</th>
-                    <th>Servicios</th>
-                    <th>Resumen</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Fin</th>
-                    <th>Acciones</th>
-                </thead>
+                    <th style="width: 50px;">ID</th>
+                    <th style="width: 140px;">Estado</th>
+                    <th style="width: 130px;">Recepción</th>
+                    <th style="width: 130px;">Despacho</th>
+                    <th style="width: 130px;">Ocupabilidad</th>
+                    <th style="width: 130px;">Servicios</th>
+                    <th style="width: 120px;">Resumen</th>
+                    <th style="width: 100px;">Fecha Inicio</th>
+                    <th style="width: 100px;">Fecha Fin</th>
+                    <th style="width: 120px;">Sede</th>
+                    <th style="width: 150px;">Acciones</th>
+            </thead>
             <tbody id="tablaBody">
-                <tr><td colspan="10" class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i><p>Cargando datos...</p></td></tr>
+                <tr>
+                    <td colspan="11" class="text-center">
+                        <i class="fa fa-spinner fa-spin fa-2x"></i>
+                        <p>Cargando datos...</p>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

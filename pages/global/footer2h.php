@@ -1,12 +1,5 @@
 </div>
-<footer>
-        <div class="pull-right">
-          Copyright © <?php echo date('Y') ?> PORTAL SEGURIDAD RANSA. All rights reserved.
-        </div>
-        <div class="clearfix"></div>
-      </footer>
-      <!-- /footer content -->
-      </div>
+
  
   <!-- jQuery -->
   <script src="../../vendors/jquery/dist/jquery.min.js"></script>
